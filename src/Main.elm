@@ -31,6 +31,7 @@ import Pages.Platform exposing (Page)
 import Pages.Secrets as Secrets
 import Pages.StaticHttp as StaticHttp
 import Palette
+import Request.Shows as Shows
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -146,7 +147,11 @@ view :
             }
 view siteMetadata page =
     StaticHttp.map
-        (\data ->
+        (\shows ->
+            let
+                _ =
+                    Debug.log "data" shows
+            in
             { view =
                 \model viewForPage ->
                     let
@@ -155,7 +160,18 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        body
+                        Element.column [ Element.width Element.fill ]
+                            [ header page.path
+                            , Element.column
+                                [ Element.padding 30
+                                , Element.spacing 40
+                                , Element.Region.mainContent
+                                , Element.width (Element.fill |> Element.maximum 800)
+                                , Element.centerX
+                                ]
+                                [ showsView shows
+                                ]
+                            ]
                             |> Element.layout
                                 [ Element.width Element.fill
                                 , Font.size 20
@@ -166,30 +182,15 @@ view siteMetadata page =
             , head = head page.frontmatter
             }
         )
-        (StaticHttp.unoptimizedRequest
-            (Secrets.succeed
-                { url = "https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
-                , method = "POST"
+        (Shows.staticRequest Shows.selection)
 
-                --, headers = [ ( "Content-Type", "application/json" ) ]
-                , headers = []
-                , body =
-                    StaticHttp.jsonBody
-                        (Encode.object
-                            [ ( "query"
-                              , Encode.string "{  allShow {    location {      name    }    startTime    endTime  }}"
-                              )
-                            ]
-                        )
-                }
-            )
-            (Decode.at [ "data", "allShow" ]
-                (Decode.at [ "location", "name" ] Decode.string
-                    |> Decode.list
-                )
-                |> StaticHttp.expectUnoptimizedJson
-            )
-        )
+
+showsView shows =
+    Element.column [] (List.map showView shows)
+
+
+showView show =
+    Element.text "SHOW"
 
 
 pageView : Model -> List ( PagePath Pages.PathKey, Metadata ) -> { path : PagePath Pages.PathKey, frontmatter : Metadata } -> Rendered -> { title : String, body : Element Msg }

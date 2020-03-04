@@ -4,3 +4,4 @@ elm-stuff
 sanity/dist
 dist
 gen/
+elm-graphql-gen
