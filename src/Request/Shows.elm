@@ -37,11 +37,16 @@ showSelection =
         (SanityApi.Object.Show.startTime |> SelectionSet.nonNullOrFail)
 
 
-staticRequest : SelectionSet value RootQuery -> StaticHttp.Request value
-staticRequest selectionSet =
+graphqlEndpointUrl =
+    --"https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
+    "https://npr5ilx1.api.sanity.io/v1/graphql/production/defaultasdf"
+
+
+staticGraphqlRequest : SelectionSet value RootQuery -> StaticHttp.Request value
+staticGraphqlRequest selectionSet =
     StaticHttp.unoptimizedRequest
         (Secrets.succeed
-            { url = "https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
+            { url = graphqlEndpointUrl
             , method = "POST"
             , headers = []
             , body =
