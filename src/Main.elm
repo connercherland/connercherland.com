@@ -3,6 +3,7 @@ module Main exposing (main)
 import Color
 import Data.Author as Author
 import Date
+import DateFormat
 import DocumentSvg
 import Element exposing (Element)
 import Element.Background
@@ -32,6 +33,7 @@ import Pages.Secrets as Secrets
 import Pages.StaticHttp as StaticHttp
 import Palette
 import Request.Shows as Shows
+import Time
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -189,8 +191,38 @@ showsView shows =
     Element.column [] (List.map showView shows)
 
 
+showView : Shows.Show -> Element msg
 showView show =
-    Element.text "SHOW"
+    Element.column
+        []
+        [ Element.text show.venue
+
+        --, Element.text <| ourFormatter { name = "PDT", zone = Time.utc } show.startTime
+        ]
+
+
+type alias NamedZone =
+    { name : String
+    , zone : Time.Zone
+    }
+
+
+ourFormatter : NamedZone -> Time.Posix -> String
+ourFormatter timezone =
+    DateFormat.format
+        [ DateFormat.dayOfWeekNameFull
+        , DateFormat.text ", "
+        , DateFormat.monthNameFull
+        , DateFormat.text " "
+        , DateFormat.dayOfMonthNumber
+        , DateFormat.text "\n"
+        , DateFormat.hourFixed
+        , DateFormat.text ":"
+        , DateFormat.minuteFixed
+        , DateFormat.amPmLowercase
+        , DateFormat.text <| " " ++ timezone.name
+        ]
+        timezone.zone
 
 
 pageView : Model -> List ( PagePath Pages.PathKey, Metadata ) -> { path : PagePath Pages.PathKey, frontmatter : Metadata } -> Rendered -> { title : String, body : Element Msg }

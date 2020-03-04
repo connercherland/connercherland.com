@@ -8,12 +8,15 @@ import Pages.Secrets as Secrets
 import Pages.StaticHttp as StaticHttp
 import SanityApi.Object
 import SanityApi.Object.Show
+import SanityApi.Object.Venue
 import SanityApi.Query as Query
 import SanityApi.Scalar
 
 
 type alias Show =
-    { startTime : SanityApi.Scalar.DateTime }
+    { venue : String
+    , startTime : SanityApi.Scalar.DateTime
+    }
 
 
 selection : SelectionSet (List Show) RootQuery
@@ -23,9 +26,14 @@ selection =
 
 showSelection : SelectionSet Show SanityApi.Object.Show
 showSelection =
-    SanityApi.Object.Show.startTime
-        |> SelectionSet.nonNullOrFail
-        |> SelectionSet.map Show
+    SelectionSet.map2 Show
+        (SanityApi.Object.Show.venue
+            (SanityApi.Object.Venue.name
+                |> SelectionSet.nonNullOrFail
+            )
+            |> SelectionSet.nonNullOrFail
+        )
+        (SanityApi.Object.Show.startTime |> SelectionSet.nonNullOrFail)
 
 
 staticRequest : SelectionSet value RootQuery -> StaticHttp.Request value
