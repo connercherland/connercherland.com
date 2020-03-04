@@ -38,8 +38,7 @@ showSelection =
 
 
 graphqlEndpointUrl =
-    --"https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
-    "https://npr5ilx1.api.sanity.io/v1/graphql/production/defaultasdf"
+    "https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
 
 
 staticGraphqlRequest : SelectionSet value RootQuery -> StaticHttp.Request value
