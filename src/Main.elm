@@ -35,6 +35,7 @@ import Palette
 import Request.Shows as Shows
 import Task
 import Time
+import TimeZone
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -120,27 +121,21 @@ type alias Model =
 init : ( Model, Cmd Msg )
 init =
     ( { timezone =
-            { name = "UTC"
-            , zone = Time.utc
+            { name = "Pacific"
+            , zone = TimeZone.america__los_angeles ()
             }
       }
-    , Time.here |> Task.perform GotTimeZone
+    , Cmd.none
     )
 
 
 type Msg
-    = GotTimeZone Time.Zone
-    | OnPageChange
+    = OnPageChange
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GotTimeZone zone ->
-            ( { model | timezone = { name = "", zone = zone } }
-            , Cmd.none
-            )
-
         OnPageChange ->
             ( model, Cmd.none )
 
@@ -164,10 +159,6 @@ view :
 view siteMetadata page =
     StaticHttp.map
         (\shows ->
-            let
-                _ =
-                    Debug.log "data" shows
-            in
             { view =
                 \model viewForPage ->
                     let
@@ -198,11 +189,11 @@ view siteMetadata page =
             , head = head page.frontmatter
             }
         )
-        (Shows.staticRequest Shows.selection)
+        (Shows.staticGraphqlRequest Shows.selection)
 
 
 showsView zone shows =
-    Element.column [] (List.map (showView zone) shows)
+    Element.column [ Element.spacing 15 ] (List.map (showView zone) shows)
 
 
 showView : NamedZone -> Shows.Show -> Element msg
@@ -229,7 +220,7 @@ ourFormatter timezone =
         , DateFormat.text " "
         , DateFormat.dayOfMonthNumber
         , DateFormat.text "\n"
-        , DateFormat.hourFixed
+        , DateFormat.hourNumber
         , DateFormat.text ":"
         , DateFormat.minuteFixed
         , DateFormat.amPmLowercase
