@@ -11,7 +11,6 @@
   "author": "Dillon Kearns",
   "license": "BSD-3",
   "dependencies": {
-    "elm-pages": "file:../elm-pages",
     "highlight.js": "^9.15.10",
     "node-sass": "^4.12.0"
   },
@@ -19,6 +18,7 @@
     "@dillonkearns/elm-graphql": "^4.0.2",
     "elm": "latest-0.19.1",
     "elm-format": "^0.8.2",
+    "elm-pages": "^1.2.10",
     "http-server": "^0.11.1"
   }
 }
