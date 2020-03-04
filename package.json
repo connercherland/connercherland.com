@@ -5,7 +5,7 @@
   "scripts": {
     "start": "elm-pages develop",
     "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
-    "build": "cd sanity && npm install && npm run build && cd .. && mv sanity/dist static/sanity && elm-pages build"
+    "build": "elm-pages build"
   },
   "author": "Dillon Kearns",
   "license": "BSD-3",
