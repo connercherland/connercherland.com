@@ -4,8 +4,8 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'location',
-      title: 'Location',
+      name: 'venue',
+      title: 'Venue',
       type: 'reference',
       to: {type: 'venue'}
     },
@@ -23,9 +23,14 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
-      manufactor: 'manufactor.title',
-      media: 'defaultProductVariant.images[0]'
+      venue: 'venue.name',
+      time: 'startTime'
+    },
+    prepare: ({venue, time}) => {
+      return {
+        title: venue,
+        subtitle: time
+      }
     }
   }
 }
