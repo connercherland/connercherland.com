@@ -5,3 +5,4 @@ sanity/dist
 dist
 gen/
 elm-graphql-gen
+.cache/
