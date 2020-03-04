@@ -43,13 +43,13 @@ manifest =
     , categories = [ Pages.Manifest.Category.education ]
     , displayMode = Manifest.Standalone
     , orientation = Manifest.Portrait
-    , description = "elm-pages-starter - A statically typed site generator."
+    , description = "Conner Cherland Music"
     , iarcRatingId = Nothing
-    , name = "elm-pages-starter"
+    , name = "Conner Cherland Music"
     , themeColor = Just Color.white
     , startUrl = pages.index
-    , shortName = Just "elm-pages-starter"
-    , sourceIcon = images.iconPng
+    , shortName = Nothing
+    , sourceIcon = images.icon
     }
 
 
