@@ -15,7 +15,8 @@ import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Index
-import Json.Decode
+import Json.Decode as Decode
+import Json.Encode as Encode
 import Markdown
 import Metadata exposing (Metadata)
 import MySitemap
@@ -27,6 +28,7 @@ import Pages.Manifest as Manifest
 import Pages.Manifest.Category
 import Pages.PagePath as PagePath exposing (PagePath)
 import Pages.Platform exposing (Page)
+import Pages.Secrets as Secrets
 import Pages.StaticHttp as StaticHttp
 import Palette
 
@@ -143,25 +145,51 @@ view :
             , head : List (Head.Tag Pages.PathKey)
             }
 view siteMetadata page =
-    StaticHttp.succeed
-        { view =
-            \model viewForPage ->
-                let
-                    { title, body } =
-                        pageView model siteMetadata page viewForPage
-                in
-                { title = title
+    StaticHttp.map
+        (\data ->
+            { view =
+                \model viewForPage ->
+                    let
+                        { title, body } =
+                            pageView model siteMetadata page viewForPage
+                    in
+                    { title = title
+                    , body =
+                        body
+                            |> Element.layout
+                                [ Element.width Element.fill
+                                , Font.size 20
+                                , Font.family [ Font.typeface "Roboto" ]
+                                , Font.color (Element.rgba255 0 0 0 0.8)
+                                ]
+                    }
+            , head = head page.frontmatter
+            }
+        )
+        (StaticHttp.unoptimizedRequest
+            (Secrets.succeed
+                { url = "https://npr5ilx1.api.sanity.io/v1/graphql/production/default"
+                , method = "POST"
+
+                --, headers = [ ( "Content-Type", "application/json" ) ]
+                , headers = []
                 , body =
-                    body
-                        |> Element.layout
-                            [ Element.width Element.fill
-                            , Font.size 20
-                            , Font.family [ Font.typeface "Roboto" ]
-                            , Font.color (Element.rgba255 0 0 0 0.8)
+                    StaticHttp.jsonBody
+                        (Encode.object
+                            [ ( "query"
+                              , Encode.string "{  allShow {    location {      name    }    startTime    endTime  }}"
+                              )
                             ]
+                        )
                 }
-        , head = head page.frontmatter
-        }
+            )
+            (Decode.at [ "data", "allShow" ]
+                (Decode.at [ "location", "name" ] Decode.string
+                    |> Decode.list
+                )
+                |> StaticHttp.expectUnoptimizedJson
+            )
+        )
 
 
 pageView : Model -> List ( PagePath Pages.PathKey, Metadata ) -> { path : PagePath Pages.PathKey, frontmatter : Metadata } -> Rendered -> { title : String, body : Element Msg }
