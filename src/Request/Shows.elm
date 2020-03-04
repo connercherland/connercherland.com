@@ -11,11 +11,12 @@ import SanityApi.Object.Show
 import SanityApi.Object.Venue
 import SanityApi.Query as Query
 import SanityApi.Scalar
+import Time
 
 
 type alias Show =
     { venue : String
-    , startTime : SanityApi.Scalar.DateTime
+    , startTime : Time.Posix
     }
 
 

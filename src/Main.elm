@@ -33,6 +33,7 @@ import Pages.Secrets as Secrets
 import Pages.StaticHttp as StaticHttp
 import Palette
 import Request.Shows as Shows
+import Task
 import Time
 
 
@@ -71,7 +72,7 @@ main =
         , documents = [ markdownDocument ]
         , manifest = manifest
         , canonicalSiteUrl = canonicalSiteUrl
-        , onPageChange = \_ -> ()
+        , onPageChange = \_ -> OnPageChange
         , generateFiles = generateFiles
         , internals = Pages.internals
         }
@@ -112,22 +113,35 @@ markdownDocument =
 
 
 type alias Model =
-    {}
+    { timezone : NamedZone
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model, Cmd.none )
+    ( { timezone =
+            { name = "UTC"
+            , zone = Time.utc
+            }
+      }
+    , Time.here |> Task.perform GotTimeZone
+    )
 
 
-type alias Msg =
-    ()
+type Msg
+    = GotTimeZone Time.Zone
+    | OnPageChange
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        () ->
+        GotTimeZone zone ->
+            ( { model | timezone = { name = "", zone = zone } }
+            , Cmd.none
+            )
+
+        OnPageChange ->
             ( model, Cmd.none )
 
 
@@ -171,7 +185,7 @@ view siteMetadata page =
                                 , Element.width (Element.fill |> Element.maximum 800)
                                 , Element.centerX
                                 ]
-                                [ showsView shows
+                                [ showsView model.timezone shows
                                 ]
                             ]
                             |> Element.layout
@@ -187,17 +201,16 @@ view siteMetadata page =
         (Shows.staticRequest Shows.selection)
 
 
-showsView shows =
-    Element.column [] (List.map showView shows)
+showsView zone shows =
+    Element.column [] (List.map (showView zone) shows)
 
 
-showView : Shows.Show -> Element msg
-showView show =
+showView : NamedZone -> Shows.Show -> Element msg
+showView zone show =
     Element.column
         []
         [ Element.text show.venue
-
-        --, Element.text <| ourFormatter { name = "PDT", zone = Time.utc } show.startTime
+        , Element.text <| ourFormatter zone show.startTime
         ]
 
 
