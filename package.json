@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Example site built with elm-pages.",
   "scripts": {
-    "start": "elm-pages develop",
+    "start": "npm run elm-graphql && elm-pages develop",
     "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
-    "build": "elm-pages build"
+    "elm-graphql": "elm-graphql https://npr5ilx1.api.sanity.io/v1/graphql/production/default --output elm-graphql-gen/ --base SanityApi --scalar-codecs Scalar",
+    "build": "npm run elm-graphql && elm-pages build"
   },
   "author": "Dillon Kearns",
   "license": "BSD-3",
