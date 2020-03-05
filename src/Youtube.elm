@@ -12,6 +12,8 @@ view id =
         , attribute "frameborder" "0"
         , attribute "height" "315"
         , src <| "https://www.youtube-nocookie.com/embed/" ++ id
-        , attribute "width" "560"
+
+        --, attribute "width" "560"
+        , attribute "width" "315"
         ]
         []
