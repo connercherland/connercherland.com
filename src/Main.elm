@@ -20,7 +20,6 @@ import Markdown
 import MenuSvg
 import Metadata exposing (Metadata)
 import MySitemap
-import Oembed
 import Pages exposing (images, pages)
 import Pages.Directory as Directory exposing (Directory)
 import Pages.Document
@@ -36,6 +35,7 @@ import Request.Shows as Shows
 import Task
 import Time
 import TimeZone
+import Youtube
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -173,7 +173,7 @@ view siteMetadata page =
                                 [ Element.width Element.fill
                                 , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
                                 ]
-                                [ Oembed.viewOrDiscover [] Nothing "https://www.youtube.com/watch?v=_wZ-xT_Nacg"
+                                [ Youtube.view "_wZ-xT_Nacg"
                                     |> Element.html
                                     |> Element.el [ Element.centerX ]
                                 , Element.column
