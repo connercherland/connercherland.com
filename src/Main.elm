@@ -399,7 +399,7 @@ footer =
         , Element.width Element.fill
         , Element.Region.footer
         , Element.alignBottom
-        , Element.height (Element.px 50)
+        , Element.padding 20
 
         --, Element.Border.widthEach { bottom = 1, left = 0, right = 0, top = 0 }
         , Element.Background.gradient
@@ -418,6 +418,7 @@ icons =
     Element.row
         [ Element.centerX
         , Element.spacing 12
+        , Font.size 30
         ]
         [ iconLink Fa.spotify "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
         , iconLink Fa.facebookSquare "http://facebook.com/connercherland/"
