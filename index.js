@@ -1,6 +1,8 @@
 import hljs from "highlight.js/lib/highlight";
 import "highlight.js/styles/github.css";
 import elm from 'highlight.js/lib/languages/elm';
+import "elm-oembed";
+
 // we're just importing the syntaxes we want from hljs
 // in order to reduce our JS bundle size
 // see https://bjacobel.com/2016/12/04/highlight-bundle-size/

@@ -20,6 +20,7 @@ import Markdown
 import MenuSvg
 import Metadata exposing (Metadata)
 import MySitemap
+import Oembed
 import Pages exposing (images, pages)
 import Pages.Directory as Directory exposing (Directory)
 import Pages.Document
@@ -168,14 +169,23 @@ view siteMetadata page =
                     , body =
                         Element.column [ Element.width Element.fill ]
                             [ header page.path
-                            , Element.column
-                                [ Element.padding 30
-                                , Element.spacing 40
-                                , Element.Region.mainContent
-                                , Element.width (Element.fill |> Element.maximum 800)
-                                , Element.centerX
+                            , Element.row
+                                [ Element.width Element.fill
+                                , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
                                 ]
-                                [ showsView model.timezone shows
+                                [ Oembed.viewOrDiscover [] Nothing "https://www.youtube.com/watch?v=_wZ-xT_Nacg"
+                                    |> Element.html
+                                    |> Element.el [ Element.centerX ]
+                                , Element.column
+                                    [ Element.padding 30
+                                    , Element.spacing 40
+                                    , Element.Region.mainContent
+
+                                    --, Element.width (Element.fill |> Element.maximum 800)
+                                    , Element.centerX
+                                    ]
+                                    [ showsView model.timezone shows
+                                    ]
                                 ]
                             ]
                             |> Element.layout
@@ -345,7 +355,7 @@ header currentPath =
             ]
             Element.none
         , Element.row
-            [ Element.paddingXY 25 4
+            [ Element.paddingXY 25 15
             , Element.spaceEvenly
             , Element.width Element.fill
             , Element.Region.navigation
@@ -356,9 +366,7 @@ header currentPath =
                 { url = "/"
                 , label =
                     Element.row [ Font.size 30, Element.spacing 16, Font.bold ]
-                        [ DocumentSvg.view
-                        , Element.text "Conner Cherland"
-                        ]
+                        [ Element.text "Conner Cherland" ]
                 }
             , responsive
                 { small = MenuSvg.view |> Element.html
