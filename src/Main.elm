@@ -16,9 +16,8 @@ import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Index
-import Json.Decode as Decode
-import Json.Encode as Encode
 import Markdown
+import MenuSvg
 import Metadata exposing (Metadata)
 import MySitemap
 import Pages exposing (images, pages)
@@ -200,8 +199,12 @@ showView : NamedZone -> Shows.Show -> Element msg
 showView zone show =
     Element.column
         []
-        [ Element.text show.venue
-        , Element.text <| ourFormatter zone show.startTime
+        [ dateFormatter zone show.startTime
+            |> Element.text
+            |> Element.el [ Font.bold ]
+        , Element.text show.venue
+        , timeFormatter zone show.startTime
+            |> Element.text
         ]
 
 
@@ -211,16 +214,22 @@ type alias NamedZone =
     }
 
 
-ourFormatter : NamedZone -> Time.Posix -> String
-ourFormatter timezone =
+dateFormatter : NamedZone -> Time.Posix -> String
+dateFormatter timezone =
     DateFormat.format
         [ DateFormat.dayOfWeekNameFull
         , DateFormat.text ", "
         , DateFormat.monthNameFull
         , DateFormat.text " "
         , DateFormat.dayOfMonthNumber
-        , DateFormat.text "\n"
-        , DateFormat.hourNumber
+        ]
+        timezone.zone
+
+
+timeFormatter : NamedZone -> Time.Posix -> String
+timeFormatter timezone =
+    DateFormat.format
+        [ DateFormat.hourNumber
         , DateFormat.text ":"
         , DateFormat.minuteFixed
         , DateFormat.amPmLowercase
@@ -346,18 +355,38 @@ header currentPath =
             [ Element.link []
                 { url = "/"
                 , label =
-                    Element.row [ Font.size 30, Element.spacing 16 ]
+                    Element.row [ Font.size 30, Element.spacing 16, Font.bold ]
                         [ DocumentSvg.view
-                        , Element.text "elm-pages-starter"
+                        , Element.text "Conner Cherland"
                         ]
                 }
-            , Element.row [ Element.spacing 15 ]
-                [ elmDocsLink
-                , githubRepoLink
-                , highlightableLink currentPath pages.blog.directory "Blog"
-                ]
+            , responsive
+                { small = MenuSvg.view |> Element.html
+                , large =
+                    Element.row [ Element.spacing 15 ]
+                        [ elmDocsLink
+                        , githubRepoLink
+                        , highlightableLink currentPath pages.blog.directory "Blog"
+                        ]
+                }
             ]
         ]
+
+
+responsive { small, large } =
+    Element.row []
+        [ small |> Element.el [ Element.htmlAttribute (Attr.class "mobileonly") ]
+        , large |> Element.el [ Element.htmlAttribute (Attr.class "largeonly") ]
+        ]
+
+
+id name =
+    Element.htmlAttribute (Attr.id name)
+
+
+mobileOnly : Element.Attribute msg
+mobileOnly =
+    Element.htmlAttribute (Attr.class "mobile-only")
 
 
 highlightableLink :
