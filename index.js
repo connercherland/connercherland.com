@@ -17,3 +17,14 @@ const pagesInit = require("elm-pages");
 pagesInit({
   mainElmModule: Elm.Main
 });
+
+loadCss('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
+
+function loadCss(url) {
+  var head = document.getElementsByTagName('HEAD')[0];  
+  var link = document.createElement('link'); 
+  link.rel = 'stylesheet';  
+  link.type = 'text/css'; 
+  link.href = url;
+  head.appendChild(link);  
+}

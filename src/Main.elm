@@ -11,6 +11,7 @@ import Element.Border
 import Element.Font as Font
 import Element.Region
 import Feed
+import FontAwesome as Fa
 import Head
 import Head.Seo as Seo
 import Html exposing (Html)
@@ -36,6 +37,15 @@ import Task
 import Time
 import TimeZone
 import Youtube
+
+
+icon : Fa.Icon -> Element msg
+icon iconType =
+    --Fa.icon
+    Fa.iconWithOptions iconType Fa.Solid [ Fa.InvertColor ] []
+        |> Element.html
+        |> Element.el
+            []
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -167,7 +177,7 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Element.column [ Element.width Element.fill ]
+                        Element.column [ Element.width Element.fill, Element.height Element.fill ]
                             [ header page.path
                             , Element.row
                                 [ Element.width Element.fill
@@ -187,6 +197,7 @@ view siteMetadata page =
                                     [ showsView model.timezone shows
                                     ]
                                 ]
+                            , footer
                             ]
                             |> Element.layout
                                 [ Element.width Element.fill
@@ -378,6 +389,50 @@ header currentPath =
                     ]
             }
         ]
+
+
+footer : Element msg
+footer =
+    Element.row
+        [ Font.color (Element.rgb255 250 235 250)
+        , Font.family [ Font.typeface "Roboto Condensed" ]
+        , Element.width Element.fill
+        , Element.Region.footer
+        , Element.alignBottom
+        , Element.height (Element.px 50)
+
+        --, Element.Border.widthEach { bottom = 1, left = 0, right = 0, top = 0 }
+        , Element.Background.gradient
+            { angle = 0.2
+            , steps =
+                [ Element.rgb255 0 10 20
+                , Element.rgb255 40 40 40
+                ]
+            }
+        ]
+        [ icons
+        ]
+
+
+icons =
+    Element.row
+        [ Element.centerX
+        , Element.spacing 12
+        ]
+        [ iconLink Fa.spotify "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
+        , iconLink Fa.facebookSquare "http://facebook.com/connercherland/"
+        , iconLink Fa.instagram "https://instagram.com/connercherland/"
+        , iconLink Fa.twitterSquare "https://twitter.com/ConnerCherland/"
+        , iconLink Fa.youTubeSquare "https://www.youtube.com/user/itsconnercherland"
+        ]
+
+
+iconLink : Fa.Icon -> String -> Element msg
+iconLink iconType url =
+    Element.newTabLink []
+        { url = url
+        , label = icon iconType
+        }
 
 
 responsive { small, large } =
