@@ -18,7 +18,9 @@ pagesInit({
   mainElmModule: Elm.Main
 });
 
-loadCss('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
+window.addEventListener('load', function() { 
+  loadCss('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
+});
 
 function loadCss(url) {
   var head = document.getElementsByTagName('HEAD')[0];  
