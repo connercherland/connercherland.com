@@ -341,43 +341,42 @@ articleImageView articleImage =
 
 header : PagePath Pages.PathKey -> Element msg
 header currentPath =
-    Element.column [ Element.width Element.fill ]
-        [ Element.el
-            [ Element.height (Element.px 4)
-            , Element.width Element.fill
-            , Element.Background.gradient
-                { angle = 0.2
-                , steps =
-                    [ Element.rgb255 0 242 96
-                    , Element.rgb255 5 117 230
+    Element.row
+        [ Element.paddingXY 25 15
+        , Element.spaceEvenly
+        , Font.color (Element.rgb255 250 235 250)
+        , Font.family [ Font.typeface "Roboto Condensed" ]
+        , Element.width Element.fill
+        , Element.Region.navigation
+        , Element.Border.widthEach { bottom = 1, left = 0, right = 0, top = 0 }
+        , Element.Background.gradient
+            { angle = 0.2
+            , steps =
+                [ Element.rgb255 0 10 20
+                , Element.rgb255 40 40 40
+                ]
+            }
+        ]
+        [ Element.link []
+            { url = "/"
+            , label =
+                Element.row
+                    [ Font.size 30
+                    , Element.spacing 16
+                    , Font.bold
                     ]
-                }
-            ]
-            Element.none
-        , Element.row
-            [ Element.paddingXY 25 15
-            , Element.spaceEvenly
-            , Element.width Element.fill
-            , Element.Region.navigation
-            , Element.Border.widthEach { bottom = 1, left = 0, right = 0, top = 0 }
-            , Element.Border.color (Element.rgba255 40 80 40 0.4)
-            ]
-            [ Element.link []
-                { url = "/"
-                , label =
-                    Element.row [ Font.size 30, Element.spacing 16, Font.bold ]
-                        [ Element.text "Conner Cherland" ]
-                }
-            , responsive
-                { small = MenuSvg.view |> Element.html
-                , large =
-                    Element.row [ Element.spacing 15 ]
-                        [ elmDocsLink
-                        , githubRepoLink
-                        , highlightableLink currentPath pages.blog.directory "Blog"
-                        ]
-                }
-            ]
+                    [ Element.text "Conner Cherland" ]
+            }
+        , responsive
+            { small = MenuSvg.view |> Element.html
+            , large =
+                Element.row [ Element.spacing 15 ]
+                    [ highlightableLink currentPath pages.blog.directory "Store"
+                    , highlightableLink currentPath pages.blog.directory "Press"
+                    , highlightableLink currentPath pages.blog.directory "Blog"
+                    , highlightableLink currentPath pages.blog.directory "Contact"
+                    ]
+            }
         ]
 
 
