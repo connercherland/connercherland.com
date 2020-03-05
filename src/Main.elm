@@ -182,7 +182,7 @@ view siteMetadata page =
                             |> Element.layout
                                 [ Element.width Element.fill
                                 , Font.size 20
-                                , Font.family [ Font.typeface "Roboto" ]
+                                , Font.family [ Font.typeface "Montserrat" ]
                                 , Font.color (Element.rgba255 0 0 0 0.8)
                                 ]
                     }
