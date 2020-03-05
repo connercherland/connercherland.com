@@ -430,9 +430,14 @@ icons =
 
 iconLink : Fa.Icon -> String -> Element msg
 iconLink iconType url =
-    Element.newTabLink []
+    Element.newTabLink
+        []
         { url = url
-        , label = icon iconType
+        , label =
+            Fa.icon iconType
+                |> Element.html
+                |> Element.el
+                    [ Element.mouseOver [ Font.color (Element.rgba255 255 255 255 0.7) ] ]
         }
 
 
@@ -463,13 +468,16 @@ highlightableLink currentPath linkDirectory displayName =
             currentPath |> Directory.includes linkDirectory
     in
     Element.link
-        (if isHighlighted then
+        ((if isHighlighted then
             [ Font.underline
             , Font.color Palette.color.primary
             ]
 
-         else
+          else
             []
+         )
+            ++ [ Element.mouseOver [ Font.color (Element.rgba255 255 255 255 0.7) ]
+               ]
         )
         { url = linkDirectory |> Directory.indexPath |> PagePath.toString
         , label = Element.text displayName
