@@ -274,6 +274,7 @@ landingPageBody =
                         ]
                     }
                 , Font.color (Element.rgba255 255 255 255 0.9)
+                , Font.family [ Font.typeface "Roboto Condensed" ]
                 ]
                 [ Element.text "Plan Your Event" ]
             ]
