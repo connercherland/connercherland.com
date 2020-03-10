@@ -167,8 +167,53 @@ view :
             , head : List (Head.Tag Pages.PathKey)
             }
 view siteMetadata page =
-    StaticHttp.map
-        (\shows ->
+    if page.path == pages.dates.index then
+        StaticHttp.map
+            (\shows ->
+                { view =
+                    \model viewForPage ->
+                        let
+                            { title, body } =
+                                pageView model siteMetadata page viewForPage
+                        in
+                        { title = title
+                        , body =
+                            Element.column [ Element.width Element.fill, Element.height Element.fill ]
+                                [ header page.path
+                                , Element.row
+                                    [ Element.width Element.fill
+                                    , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
+                                    ]
+                                    [ Youtube.view "_wZ-xT_Nacg"
+                                        |> Element.html
+                                        |> Element.el [ Element.centerX ]
+                                    , Element.column
+                                        [ Element.padding 30
+                                        , Element.spacing 40
+                                        , Element.Region.mainContent
+
+                                        --, Element.width (Element.fill |> Element.maximum 800)
+                                        , Element.centerX
+                                        ]
+                                        [ showsView model.timezone shows
+                                        ]
+                                    ]
+                                , footer
+                                ]
+                                |> Element.layout
+                                    [ Element.width Element.fill
+                                    , Font.size 20
+                                    , Font.family [ Font.typeface "Montserrat" ]
+                                    , Font.color (Element.rgba255 0 0 0 0.8)
+                                    ]
+                        }
+                , head = head page.frontmatter
+                }
+            )
+            (Shows.staticGraphqlRequest Shows.selection)
+
+    else
+        StaticHttp.succeed
             { view =
                 \model viewForPage ->
                     let
@@ -179,24 +224,7 @@ view siteMetadata page =
                     , body =
                         Element.column [ Element.width Element.fill, Element.height Element.fill ]
                             [ header page.path
-                            , Element.row
-                                [ Element.width Element.fill
-                                , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
-                                ]
-                                [ Youtube.view "_wZ-xT_Nacg"
-                                    |> Element.html
-                                    |> Element.el [ Element.centerX ]
-                                , Element.column
-                                    [ Element.padding 30
-                                    , Element.spacing 40
-                                    , Element.Region.mainContent
-
-                                    --, Element.width (Element.fill |> Element.maximum 800)
-                                    , Element.centerX
-                                    ]
-                                    [ showsView model.timezone shows
-                                    ]
-                                ]
+                            , Element.el [ Element.padding 80 ] landingPageBody
                             , footer
                             ]
                             |> Element.layout
@@ -208,8 +236,52 @@ view siteMetadata page =
                     }
             , head = head page.frontmatter
             }
-        )
-        (Shows.staticGraphqlRequest Shows.selection)
+
+
+landingPageBody =
+    Element.row [ Element.spacing 40 ]
+        [ Element.image [ Element.width (Element.fill |> Element.maximum 600) ]
+            { src = ImagePath.toString Pages.images.connerLandingPage
+            , description = "Conner Cherland"
+            }
+        , Element.column
+            [ Element.centerX
+            , Element.width (Element.fill |> Element.maximum 600)
+            , Element.spacing 30
+            , Font.center
+            ]
+            [ Element.text "I’m a dedicated musician, based in Santa Barbara."
+            , points
+                [ Element.text "4 albums recorded"
+                , Element.text "Over 700 shows"
+                ]
+            , Element.text "Let’s plan your next event today."
+            , points
+                [ Element.text "Weddings"
+                , Element.text "Corporate Events"
+                , Element.text "House Concerts"
+                , Element.text "Private Events"
+                ]
+            , Element.row
+                [ Element.centerX
+                , Element.Border.rounded 14
+                , Element.paddingXY 18 14
+                , Element.Background.gradient
+                    { angle = 0.2
+                    , steps =
+                        [ Element.rgb255 0 10 20
+                        , Element.rgb255 40 40 40
+                        ]
+                    }
+                , Font.color (Element.rgba255 255 255 255 0.9)
+                ]
+                [ Element.text "Plan Your Event" ]
+            ]
+        ]
+
+
+points pointList =
+    Element.column [ Element.paddingEach { left = 30, top = 0, right = 0, bottom = 0 } ] (pointList |> List.map (\point -> Element.row [ Element.spacing 10 ] [ Element.text "•", point ]))
 
 
 showsView zone shows =
@@ -383,7 +455,7 @@ header currentPath =
             , large =
                 Element.row [ Element.spacing 15 ]
                     [ highlightableLink currentPath pages.blog.directory "Store"
-                    , highlightableLink currentPath pages.blog.directory "Press"
+                    , highlightableLink currentPath pages.dates.directory "Dates"
                     , highlightableLink currentPath pages.blog.directory "Blog"
                     , highlightableLink currentPath pages.blog.directory "Contact"
                     ]
