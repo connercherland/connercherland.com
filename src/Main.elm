@@ -14,8 +14,8 @@ import Feed
 import FontAwesome as Fa
 import Head
 import Head.Seo as Seo
-import Html exposing (Html)
-import Html.Attributes as Attr
+import Html exposing (..)
+import Html.Attributes as Attr exposing (class)
 import Index
 import Markdown
 import MenuSvg
@@ -178,34 +178,35 @@ view siteMetadata page =
                         in
                         { title = title
                         , body =
-                            Element.column [ Element.width Element.fill, Element.height Element.fill ]
-                                [ header page.path
-                                , Element.row
-                                    [ Element.width Element.fill
-                                    , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
-                                    ]
-                                    [ Youtube.view "_wZ-xT_Nacg"
-                                        |> Element.html
-                                        |> Element.el [ Element.centerX ]
-                                    , Element.column
-                                        [ Element.padding 30
-                                        , Element.spacing 40
-                                        , Element.Region.mainContent
+                            Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
 
-                                        --, Element.width (Element.fill |> Element.maximum 800)
-                                        , Element.centerX
-                                        ]
-                                        [ showsView model.timezone shows
-                                        ]
-                                    ]
-                                , footer
-                                ]
-                                |> Element.layout
-                                    [ Element.width Element.fill
-                                    , Font.size 20
-                                    , Font.family [ Font.typeface "Montserrat" ]
-                                    , Font.color (Element.rgba255 0 0 0 0.8)
-                                    ]
+                        -- Element.column [ Element.width Element.fill, Element.height Element.fill ]
+                        --     [ header page.path
+                        --     , Element.row
+                        --         [ Element.width Element.fill
+                        --         , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
+                        --         ]
+                        --         [ Youtube.view "_wZ-xT_Nacg"
+                        --             |> Element.html
+                        --             |> Element.el [ Element.centerX ]
+                        --         , Element.column
+                        --             [ Element.padding 30
+                        --             , Element.spacing 40
+                        --             , Element.Region.mainContent
+                        --             --, Element.width (Element.fill |> Element.maximum 800)
+                        --             , Element.centerX
+                        --             ]
+                        --             [ showsView model.timezone shows
+                        --             ]
+                        --         ]
+                        --     , footer
+                        --     ]
+                        --     |> Element.layout
+                        --         [ Element.width Element.fill
+                        --         , Font.size 20
+                        --         , Font.family [ Font.typeface "Montserrat" ]
+                        --         , Font.color (Element.rgba255 0 0 0 0.8)
+                        --         ]
                         }
                 , head = head page.frontmatter
                 }
@@ -222,24 +223,51 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Element.column [ Element.width Element.fill, Element.height Element.fill ]
-                            [ header page.path
-                            , Element.el
-                                [ Element.padding 80
-                                , Element.width (Element.fill |> Element.maximum 1400)
-
-                                -- , Element.explain Debug.todo
-                                , Element.centerX
-                                ]
-                                landingPageBody
-                            , footer
+                        Html.nav
+                            [ Attr.class "flex items-center justify-between flex-wrap bg-gray-900 p-6"
                             ]
-                            |> Element.layout
-                                [ Element.width Element.fill
-                                , Font.size 20
-                                , Font.family [ Font.typeface "Montserrat" ]
-                                , Font.color (Element.rgba255 0 0 0 0.8)
+                            [ -- Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
+                              div [ class "flex items-center flex-shrink-0 text-white mr-6" ]
+                                [ span [ class "font-semibold text-xl tracking-tight" ] [ text "Conner Cherland" ]
                                 ]
+                            , div [ class "block lg:hidden" ]
+                                [ button
+                                    [ class "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" ]
+                                    [ MenuSvg.view ]
+                                ]
+                            , div [ class "w-full block flex-grow lg:flex lg:items-center lg:w-auto" ]
+                                [ div [ class "text-sm lg:flex-grow" ]
+                                    [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                        [ text "Docs" ]
+                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                        [ text "Examples" ]
+                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white", Attr.href "#responsive-header" ]
+                                        [ text "Blog" ]
+                                    ]
+                                , div []
+                                    [ a [ class "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0", Attr.href "#" ]
+                                        [ text "Download" ]
+                                    ]
+                                ]
+                            ]
+
+                    --     Element.column [ Element.width Element.fill, Element.height Element.fill ]
+                    --         [ header page.path
+                    --         , Element.el
+                    --             [ Element.padding 80
+                    --             , Element.width (Element.fill |> Element.maximum 1400)
+                    --             -- , Element.explain Debug.todo
+                    --             , Element.centerX
+                    --             ]
+                    --             landingPageBody
+                    --         , footer
+                    --         ]
+                    --         |> Element.layout
+                    --             [ Element.width Element.fill
+                    --             , Font.size 20
+                    --             , Font.family [ Font.typeface "Montserrat" ]
+                    --             , Font.color (Element.rgba255 0 0 0 0.8)
+                    --             ]
                     }
             , head = head page.frontmatter
             }

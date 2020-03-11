@@ -6,13 +6,15 @@
     "start": "npm run elm-graphql && elm-pages develop --port 1234",
     "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
     "elm-graphql": "elm-graphql https://npr5ilx1.api.sanity.io/v1/graphql/production/default --output elm-graphql-gen/ --base SanityApi --scalar-codecs Scalar",
-    "build": "npm run elm-graphql && elm-pages build"
+    "build": "npm run elm-graphql && elm-pages build",
+    "tailwind": "tailwindcss build tailwind.css -o src/tailwind-compiled.css"
   },
   "author": "Dillon Kearns",
   "license": "BSD-3",
   "dependencies": {
     "highlight.js": "^9.15.10",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "@dillonkearns/elm-graphql": "^4.0.2",
