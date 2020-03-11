@@ -224,7 +224,14 @@ view siteMetadata page =
                     , body =
                         Element.column [ Element.width Element.fill, Element.height Element.fill ]
                             [ header page.path
-                            , Element.el [ Element.padding 80 ] landingPageBody
+                            , Element.el
+                                [ Element.padding 80
+                                , Element.width (Element.fill |> Element.maximum 1400)
+
+                                -- , Element.explain Debug.todo
+                                , Element.centerX
+                                ]
+                                landingPageBody
                             , footer
                             ]
                             |> Element.layout
@@ -239,28 +246,45 @@ view siteMetadata page =
 
 
 landingPageBody =
-    Element.row [ Element.spacing 40 ]
-        [ Element.image [ Element.width (Element.fill |> Element.maximum 600) ]
-            { src = ImagePath.toString Pages.images.connerLandingPage
-            , description = "Conner Cherland"
-            }
+    Element.row
+        [ -- Element.spacing 40
+          Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
+        , Element.width Element.fill
+        ]
+        [ Element.row
+            [ Element.width (Element.fillPortion 1)
+            ]
+            [ Element.image
+                [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
+                  Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
+                , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
+                ]
+                { src = ImagePath.toString Pages.images.connerLandingPage
+                , description = "Conner Cherland"
+                }
+            ]
         , Element.column
             [ Element.centerX
-            , Element.width (Element.fill |> Element.maximum 600)
+
+            -- , Element.width (Element.fill |> Element.maximum 600)
+            , Element.width (Element.fillPortion 1)
+
+            -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
+            -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
             , Element.spacing 30
             , Font.center
             ]
-            [ Element.text "I’m a dedicated musician, based in Santa Barbara."
+            [ p "I’m a dedicated musician, based in Santa Barbara."
             , points
-                [ Element.text "4 albums recorded"
-                , Element.text "Over 700 shows"
+                [ p "4 albums recorded"
+                , p "Over 700 shows"
                 ]
-            , Element.text "Let’s plan your next event today."
+            , p "Let’s plan your next event today."
             , points
-                [ Element.text "Weddings"
-                , Element.text "Corporate Events"
-                , Element.text "House Concerts"
-                , Element.text "Private Events"
+                [ p "Weddings"
+                , p "Corporate Events"
+                , p "House Concerts"
+                , p "Private Events"
                 ]
             , Element.row
                 [ Element.centerX
@@ -279,6 +303,10 @@ landingPageBody =
                 [ Element.text "Plan Your Event" ]
             ]
         ]
+
+
+p value =
+    Element.paragraph [] [ Element.text value ]
 
 
 points pointList =
