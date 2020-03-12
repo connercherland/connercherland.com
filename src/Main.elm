@@ -278,7 +278,7 @@ view siteMetadata page =
 
 landingPageBodyNew =
     div [ class "md:flex" ]
-        [ div [ class "md:flex-shrink-0 lg:w-1/2" ]
+        [ div [ class "md:flex-shrink-0 md:w-1/2" ]
             [ Html.img
                 [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
                 , Attr.alt "Conner Cherland"
@@ -288,7 +288,7 @@ landingPageBodyNew =
                 ]
                 []
             ]
-        , div [ class "lg:w-1/2 md:flex-shrink-0" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
+        , div [ class "md:w-1/2 md:flex-shrink-0" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
         ]
 
 
