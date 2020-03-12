@@ -223,32 +223,35 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Html.nav
-                            [ Attr.class "flex items-center justify-between flex-wrap bg-gray-900 p-6"
-                            ]
-                            [ -- Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
-                              div [ class "flex items-center flex-shrink-0 text-white mr-6" ]
-                                [ span [ class "font-semibold text-xl tracking-tight" ] [ text "Conner Cherland" ]
+                        Html.div []
+                            [ Html.nav
+                                [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
                                 ]
-                            , div [ class "block lg:hidden" ]
-                                [ button
-                                    [ class "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" ]
-                                    [ MenuSvg.view ]
-                                ]
-                            , div [ class "w-full block flex-grow lg:flex lg:items-center lg:w-auto" ]
-                                [ div [ class "text-sm lg:flex-grow" ]
-                                    [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
-                                        [ text "Docs" ]
-                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
-                                        [ text "Examples" ]
-                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white", Attr.href "#responsive-header" ]
-                                        [ text "Blog" ]
+                                [ -- Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
+                                  div [ class "flex items-center flex-shrink-0 text-white mr-6" ]
+                                    [ span [ class "font-semibold text-xl tracking-tight" ] [ text "Conner Cherland" ]
                                     ]
-                                , div []
-                                    [ a [ class "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0", Attr.href "#" ]
-                                        [ text "Download" ]
+                                , div [ class "block lg:hidden" ]
+                                    [ button
+                                        [ class "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" ]
+                                        [ MenuSvg.view ]
+                                    ]
+                                , div [ class "w-full block flex-grow lg:flex lg:items-center lg:w-auto" ]
+                                    [ div [ class "text-sm lg:flex-grow" ]
+                                        [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                            [ text "Docs" ]
+                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                            [ text "Examples" ]
+                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white", Attr.href "#responsive-header" ]
+                                            [ text "Blog" ]
+                                        ]
+                                    , div []
+                                        [ a [ class "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0", Attr.href "#" ]
+                                            [ text "Download" ]
+                                        ]
                                     ]
                                 ]
+                            , landingPageBodyNew
                             ]
 
                     --     Element.column [ Element.width Element.fill, Element.height Element.fill ]
@@ -271,6 +274,83 @@ view siteMetadata page =
                     }
             , head = head page.frontmatter
             }
+
+
+landingPageBodyNew =
+    div [ class "md:flex" ]
+        [ div [ class "md:flex-shrink-0 lg:w-1/2" ]
+            [ Html.img
+                [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
+                , Attr.alt "Conner Cherland"
+                , class "min-w-full object-cover"
+
+                -- , class "lg:w-1/2 md:flex-shrink-0"
+                ]
+                []
+            ]
+        , div [ class "lg:w-1/2 md:flex-shrink-0" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
+        ]
+
+
+
+-- { src = ImagePath.toString Pages.images.connerLandingPage
+-- , description = "Conner Cherland"
+-- }
+-- Element.row
+--     [ -- Element.spacing 40
+--       Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
+--     , Element.width Element.fill
+--     ]
+--     [ Element.row
+--         [ Element.width (Element.fillPortion 1)
+--         ]
+--         [ Element.image
+--             [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
+--               Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
+--             , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
+--             ]
+--             { src = ImagePath.toString Pages.images.connerLandingPage
+--             , description = "Conner Cherland"
+--             }
+--         ]
+--     , Element.column
+--         [ Element.centerX
+--         -- , Element.width (Element.fill |> Element.maximum 600)
+--         , Element.width (Element.fillPortion 1)
+--         -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
+--         -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
+--         , Element.spacing 30
+--         , Font.center
+--         ]
+--         [ p "I’m a dedicated musician, based in Santa Barbara."
+--         , points
+--             [ p "4 albums recorded"
+--             , p "Over 700 shows"
+--             ]
+--         , p "Let’s plan your next event today."
+--         , points
+--             [ p "Weddings"
+--             , p "Corporate Events"
+--             , p "House Concerts"
+--             , p "Private Events"
+--             ]
+--         , Element.row
+--             [ Element.centerX
+--             , Element.Border.rounded 14
+--             , Element.paddingXY 18 14
+--             , Element.Background.gradient
+--                 { angle = 0.2
+--                 , steps =
+--                     [ Element.rgb255 0 10 20
+--                     , Element.rgb255 40 40 40
+--                     ]
+--                 }
+--             , Font.color (Element.rgba255 255 255 255 0.9)
+--             , Font.family [ Font.typeface "Roboto Condensed" ]
+--             ]
+--             [ Element.text "Plan Your Event" ]
+--         ]
+--     ]
 
 
 landingPageBody =
