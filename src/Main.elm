@@ -229,25 +229,29 @@ view siteMetadata page =
                                 ]
                                 [ -- Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
                                   div [ class "flex items-center flex-shrink-0 text-white mr-6" ]
-                                    [ span [ class "font-semibold text-xl tracking-tight" ] [ text "Conner Cherland" ]
+                                    [ span [ class "uppercase font-semibold text-xl tracking-tight" ] [ text "Conner Cherland" ]
                                     ]
                                 , div [ class "block lg:hidden" ]
                                     [ button
-                                        [ class "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" ]
+                                        [ class "flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-white hover:border-white" ]
                                         [ MenuSvg.view ]
                                     ]
                                 , div [ class "w-full block flex-grow lg:flex lg:items-center lg:w-auto" ]
                                     [ div [ class "text-sm lg:flex-grow" ]
-                                        [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                        [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                             [ text "Docs" ]
-                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4", Attr.href "#responsive-header" ]
+                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                             [ text "Examples" ]
-                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white", Attr.href "#responsive-header" ]
+                                        , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white", Attr.href "#responsive-header" ]
                                             [ text "Blog" ]
                                         ]
                                     , div []
-                                        [ a [ class "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0", Attr.href "#" ]
-                                            [ text "Download" ]
+                                        [ a
+                                            -- [ class "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                                            [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                                            , Attr.href "#"
+                                            ]
+                                            [ text "Plan Your Event" ]
                                         ]
                                     ]
                                 ]
@@ -278,17 +282,17 @@ view siteMetadata page =
 
 landingPageBodyNew =
     div [ class "md:flex" ]
-        [ div [ class "md:flex-shrink-0 md:w-1/2" ]
+        [ div [ class "md:flex-shrink-0 md:w-1/2 p-6 md:p-12 lg:p-24" ]
             [ Html.img
                 [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
                 , Attr.alt "Conner Cherland"
-                , class "min-w-full object-cover"
+                , class "min-w-fullobject-center"
 
                 -- , class "lg:w-1/2 md:flex-shrink-0"
                 ]
                 []
             ]
-        , div [ class "md:w-1/2 md:flex-shrink-0" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
+        , div [ class "md:w-1/2 md:flex-shrink-0 p-6 md:p-12 lg:p-24" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
         ]
 
 
