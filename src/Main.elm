@@ -235,17 +235,17 @@ view siteMetadata page =
                                         [ class "flex items-center px-3 py-2 border rounded text-white border-gray-400 hover:text-white hover:border-white" ]
                                         [ MenuSvg.view ]
                                     ]
-                                , div [ class "w-full block lg:flex lg:items-center lg:w-auto" ]
+                                , div [ class "w-full block lg:flex lg:items-center lg:w-auto text-lg" ]
                                     [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Bio" ]
                                     , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Music" ]
-                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white", Attr.href "#responsive-header" ]
+                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Reviews" ]
-                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white", Attr.href "#responsive-header" ]
+                                    , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Dates" ]
-                                    , a
-                                        [ class "bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                                    , button
+                                        [ class "block bg-white lg:inline-block hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
                                         , Attr.href "#"
                                         ]
                                         [ text "Plan Your Event" ]
