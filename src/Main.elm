@@ -223,7 +223,7 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Html.div [ class "font-body" ]
+                        Html.div [ class "font-body bg-gray-100" ]
                             [ Html.nav
                                 [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
                                 ]
@@ -292,29 +292,35 @@ landingPageBodyNew =
                 ]
                 []
             ]
-        , div [ class "md:w-1/2 md:flex-shrink-0 p-6 md:p-12 lg:p-24" ]
-            [ div [ class "" ]
-                [ p [ class "pb-4" ]
+        , div [ class "lg:w-1/2 sm:flex-shrink p-6 md:p-12 lg:p-24" ]
+            [ div [ class "w-56 mx-auto flex justify-center flex-col h-full" ]
+                [ div [ class "pb-4" ]
                     [ text "I’m a dedicated musician, based in Santa Barbara." ]
-                , ul
-                    [ class "list-disc pb-4" ]
-                    [ li [] [ text "4 albums recorded" ]
-                    , li [] [ text "Over 700 shows" ]
+                , div []
+                    [ ul
+                        [ class "list-disc pb-4" ]
+                        [ li [] [ text "4 albums recorded" ]
+                        , li [] [ text "Over 700 shows" ]
+                        ]
                     ]
-                , p [ class "pb-4" ]
+                , div [ class "pb-4" ]
                     [ text "Let’s plan your next event today." ]
-                , ul
-                    [ class "list-disc pb-4" ]
-                    [ li [] [ text "Weddings" ]
-                    , li [] [ text "Corporate Events" ]
-                    , li [] [ text "House Concerts" ]
-                    , li [] [ text "Private Events" ]
+                , div []
+                    [ ul
+                        [ class "list-disc pb-4" ]
+                        [ li [] [ text "Weddings" ]
+                        , li [] [ text "Corporate Events" ]
+                        , li [] [ text "House Concerts" ]
+                        , li [] [ text "Private Events" ]
+                        ]
                     ]
-                , button
-                    -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
-                    [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                , div []
+                    [ button
+                        -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                        [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                        ]
+                        [ text "Plan Your Event" ]
                     ]
-                    [ text "Plan Your Event" ]
                 ]
 
             --                 [ p "4 albums recorded"
