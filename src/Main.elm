@@ -223,7 +223,7 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Html.div []
+                        Html.div [ class "font-body" ]
                             [ Html.nav
                                 [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
                                 ]
@@ -292,7 +292,42 @@ landingPageBodyNew =
                 ]
                 []
             ]
-        , div [ class "md:w-1/2 md:flex-shrink-0 p-6 md:p-12 lg:p-24" ] [ text "I’m a dedicated musician, based in Santa Barbara." ]
+        , div [ class "md:w-1/2 md:flex-shrink-0 p-6 md:p-12 lg:p-24" ]
+            [ div [ class "" ]
+                [ p [ class "pb-4" ]
+                    [ text "I’m a dedicated musician, based in Santa Barbara." ]
+                , ul
+                    [ class "list-disc pb-4" ]
+                    [ li [] [ text "4 albums recorded" ]
+                    , li [] [ text "Over 700 shows" ]
+                    ]
+                , p [ class "pb-4" ]
+                    [ text "Let’s plan your next event today." ]
+                , ul
+                    [ class "list-disc pb-4" ]
+                    [ li [] [ text "Weddings" ]
+                    , li [] [ text "Corporate Events" ]
+                    , li [] [ text "House Concerts" ]
+                    , li [] [ text "Private Events" ]
+                    ]
+                , button
+                    -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                    [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                    ]
+                    [ text "Plan Your Event" ]
+                ]
+
+            --                 [ p "4 albums recorded"
+            --                 , p "Over 700 shows"
+            --                 ]
+            --             , p "Let’s plan your next event today."
+            --             , points
+            --                 [ p "Weddings"
+            --                 , p "Corporate Events"
+            --                 , p "House Concerts"
+            --                 , p "Private Events"
+            --                 ]
+            ]
         ]
 
 
@@ -355,70 +390,62 @@ landingPageBodyNew =
 --             [ Element.text "Plan Your Event" ]
 --         ]
 --     ]
-
-
-landingPageBody =
-    Element.row
-        [ -- Element.spacing 40
-          Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
-        , Element.width Element.fill
-        ]
-        [ Element.row
-            [ Element.width (Element.fillPortion 1)
-            ]
-            [ Element.image
-                [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
-                  Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
-                , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
-                ]
-                { src = ImagePath.toString Pages.images.connerLandingPage
-                , description = "Conner Cherland"
-                }
-            ]
-        , Element.column
-            [ Element.centerX
-
-            -- , Element.width (Element.fill |> Element.maximum 600)
-            , Element.width (Element.fillPortion 1)
-
-            -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
-            -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
-            , Element.spacing 30
-            , Font.center
-            ]
-            [ p "I’m a dedicated musician, based in Santa Barbara."
-            , points
-                [ p "4 albums recorded"
-                , p "Over 700 shows"
-                ]
-            , p "Let’s plan your next event today."
-            , points
-                [ p "Weddings"
-                , p "Corporate Events"
-                , p "House Concerts"
-                , p "Private Events"
-                ]
-            , Element.row
-                [ Element.centerX
-                , Element.Border.rounded 14
-                , Element.paddingXY 18 14
-                , Element.Background.gradient
-                    { angle = 0.2
-                    , steps =
-                        [ Element.rgb255 0 10 20
-                        , Element.rgb255 40 40 40
-                        ]
-                    }
-                , Font.color (Element.rgba255 255 255 255 0.9)
-                , Font.family [ Font.typeface "Roboto Condensed" ]
-                ]
-                [ Element.text "Plan Your Event" ]
-            ]
-        ]
-
-
-p value =
-    Element.paragraph [] [ Element.text value ]
+-- landingPageBody =
+--     Element.row
+--         [ -- Element.spacing 40
+--           Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
+--         , Element.width Element.fill
+--         ]
+--         [ Element.row
+--             [ Element.width (Element.fillPortion 1)
+--             ]
+--             [ Element.image
+--                 [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
+--                   Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
+--                 , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
+--                 ]
+--                 { src = ImagePath.toString Pages.images.connerLandingPage
+--                 , description = "Conner Cherland"
+--                 }
+--             ]
+--         , Element.column
+--             [ Element.centerX
+--             -- , Element.width (Element.fill |> Element.maximum 600)
+--             , Element.width (Element.fillPortion 1)
+--             -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
+--             -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
+--             , Element.spacing 30
+--             , Font.center
+--             ]
+--             [ p "I’m a dedicated musician, based in Santa Barbara."
+--             , points
+--                 [ p "4 albums recorded"
+--                 , p "Over 700 shows"
+--                 ]
+--             , p "Let’s plan your next event today."
+--             , points
+--                 [ p "Weddings"
+--                 , p "Corporate Events"
+--                 , p "House Concerts"
+--                 , p "Private Events"
+--                 ]
+--             , Element.row
+--                 [ Element.centerX
+--                 , Element.Border.rounded 14
+--                 , Element.paddingXY 18 14
+--                 , Element.Background.gradient
+--                     { angle = 0.2
+--                     , steps =
+--                         [ Element.rgb255 0 10 20
+--                         , Element.rgb255 40 40 40
+--                         ]
+--                     }
+--                 , Font.color (Element.rgba255 255 255 255 0.9)
+--                 , Font.family [ Font.typeface "Roboto Condensed" ]
+--                 ]
+--                 [ Element.text "Plan Your Event" ]
+--             ]
+--         ]
 
 
 points pointList =
