@@ -152,7 +152,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         OnPageChange ->
-            ( model, Cmd.none )
+            ( { model | menuOpen = False }, Cmd.none )
 
         ToggleMenu ->
             ( { model | menuOpen = not model.menuOpen }, Cmd.none )
