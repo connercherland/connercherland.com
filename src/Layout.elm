@@ -9,7 +9,7 @@ import Pages exposing (pages)
 import Pages.PagePath as PagePath
 
 
-view : { model | menuOpen : Bool } -> msg -> Html msg -> Html msg
+view : { model | menuOpen : Bool } -> msg -> List (Html msg) -> Html msg
 view model toggleMenuMsg main =
     Html.div [ Attr.id "body", class "font-body bg-gray-100 min-h-screen flex flex-col" ]
         [ Html.nav
@@ -41,7 +41,7 @@ view model toggleMenuMsg main =
                     [ text "Plan Your Event" ]
                 ]
             ]
-        , main
+        , div [ class "md:flex flex-grow" ] main
         , Html.footer
             [ Attr.class "flex font-display justify-center flex-wrap bg-gray-900 p-6"
             ]

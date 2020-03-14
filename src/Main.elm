@@ -186,7 +186,12 @@ view siteMetadata page =
                         in
                         { title = title
                         , body =
-                            Html.button [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ] [ Html.text "Hello!" ]
+                            Layout.view model
+                                ToggleMenu
+                                [ Html.button
+                                    [ Attr.class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" ]
+                                    [ Html.text "Hello!" ]
+                                ]
 
                         -- Element.column [ Element.width Element.fill, Element.height Element.fill ]
                         --     [ header page.path
@@ -237,60 +242,59 @@ view siteMetadata page =
 
 
 landingPageBodyNew =
-    div [ class "md:flex flex-grow" ]
-        [ div [ class "md:flex-shrink-0 md:w-1/2 p-6 md:p-12 lg:p-24" ]
-            [ Html.img
-                [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
-                , Attr.alt "Conner Cherland"
-                , class "min-w-fullobject-center"
+    [ div [ class "md:flex-shrink-0 md:w-1/2 p-6 md:p-12 lg:p-24" ]
+        [ Html.img
+            [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
+            , Attr.alt "Conner Cherland"
+            , class "min-w-fullobject-center"
 
-                -- , class "lg:w-1/2 md:flex-shrink-0"
-                ]
-                []
+            -- , class "lg:w-1/2 md:flex-shrink-0"
             ]
-        , div [ class "lg:w-1/2 sm:flex-shrink p-6 md:p-12 lg:p-24 text-lg" ]
-            [ div [ class "w-64 md:w-auto mx-auto flex justify-center flex-col h-full" ]
-                [ div [ class "pb-4" ]
-                    [ text "I’m a dedicated musician, based in Santa Barbara." ]
-                , div []
-                    [ ul
-                        [ class "list-disc pb-4" ]
-                        [ li [] [ text "4 albums recorded" ]
-                        , li [] [ text "Over 700 shows" ]
-                        ]
-                    ]
-                , div [ class "pb-4" ]
-                    [ text "Let’s plan your next event today." ]
-                , div []
-                    [ ul
-                        [ class "list-disc pb-4" ]
-                        [ li [] [ text "Weddings" ]
-                        , li [] [ text "Corporate Events" ]
-                        , li [] [ text "House Concerts" ]
-                        , li [] [ text "Private Events" ]
-                        ]
-                    ]
-                , div [ class "flex justify-center md:justify-start" ]
-                    [ button
-                        -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
-                        [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded font-display shadow-lg"
-                        ]
-                        [ text "Plan Your Event" ]
-                    ]
-                ]
-
-            --                 [ p "4 albums recorded"
-            --                 , p "Over 700 shows"
-            --                 ]
-            --             , p "Let’s plan your next event today."
-            --             , points
-            --                 [ p "Weddings"
-            --                 , p "Corporate Events"
-            --                 , p "House Concerts"
-            --                 , p "Private Events"
-            --                 ]
-            ]
+            []
         ]
+    , div [ class "lg:w-1/2 sm:flex-shrink p-6 md:p-12 lg:p-24 text-lg" ]
+        [ div [ class "w-64 md:w-auto mx-auto flex justify-center flex-col h-full" ]
+            [ div [ class "pb-4" ]
+                [ text "I’m a dedicated musician, based in Santa Barbara." ]
+            , div []
+                [ ul
+                    [ class "list-disc pb-4" ]
+                    [ li [] [ text "4 albums recorded" ]
+                    , li [] [ text "Over 700 shows" ]
+                    ]
+                ]
+            , div [ class "pb-4" ]
+                [ text "Let’s plan your next event today." ]
+            , div []
+                [ ul
+                    [ class "list-disc pb-4" ]
+                    [ li [] [ text "Weddings" ]
+                    , li [] [ text "Corporate Events" ]
+                    , li [] [ text "House Concerts" ]
+                    , li [] [ text "Private Events" ]
+                    ]
+                ]
+            , div [ class "flex justify-center md:justify-start" ]
+                [ button
+                    -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                    [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded font-display shadow-lg"
+                    ]
+                    [ text "Plan Your Event" ]
+                ]
+            ]
+
+        --                 [ p "4 albums recorded"
+        --                 , p "Over 700 shows"
+        --                 ]
+        --             , p "Let’s plan your next event today."
+        --             , points
+        --                 [ p "Weddings"
+        --                 , p "Corporate Events"
+        --                 , p "House Concerts"
+        --                 , p "Private Events"
+        --                 ]
+        ]
+    ]
 
 
 
