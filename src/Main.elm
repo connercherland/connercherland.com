@@ -253,9 +253,9 @@ view siteMetadata page =
                                 ]
                             , landingPageBodyNew
                             , Html.footer
-                                [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
+                                [ Attr.class "flex font-display justify-center flex-wrap bg-gray-900 p-6"
                                 ]
-                                []
+                                [ icons ]
                             ]
                     }
             , head = head page.frontmatter
@@ -296,7 +296,7 @@ landingPageBodyNew =
                         , li [] [ text "Private Events" ]
                         ]
                     ]
-                , div []
+                , div [ class "flex justify-center md:justify-start" ]
                     [ button
                         -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
                         [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
@@ -638,15 +638,14 @@ footer =
                 ]
             }
         ]
-        [ icons
-        ]
+        []
 
 
 icons =
-    Element.row
-        [ Element.centerX
-        , Element.spacing 12
-        , Font.size 30
+    Html.div
+        [--     Element.centerX
+         -- , Element.spacing 12
+         -- , Font.size 30
         ]
         [ iconLink Fa.spotify "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
         , iconLink Fa.facebookSquare "http://facebook.com/connercherland/"
@@ -656,17 +655,17 @@ icons =
         ]
 
 
-iconLink : Fa.Icon -> String -> Element msg
+iconLink : Fa.Icon -> String -> Html msg
 iconLink iconType url =
-    Element.newTabLink
-        []
-        { url = url
-        , label =
-            Fa.icon iconType
-                |> Element.html
-                |> Element.el
-                    [ Element.mouseOver [ Font.color (Element.rgba255 255 255 255 0.7) ] ]
-        }
+    a
+        [ Attr.href url, class "text-gray-100 hover:text-gray-400 mr-4 text-2xl" ]
+        [ Fa.icon iconType ]
+
+
+
+-- |> Element.html
+-- |> Element.el
+-- [ Element.mouseOver [ Font.color (Element.rgba255 255 255 255 0.7) ] ]
 
 
 responsive { small, large } =
