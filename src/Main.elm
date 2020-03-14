@@ -245,7 +245,7 @@ view siteMetadata page =
                                     , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Dates" ]
                                     , button
-                                        [ class "block mt-4 lg:mt-0 bg-white lg:inline-block hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                                        [ class "block mt-4 lg:mt-0 bg-white lg:inline-block hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow-lg font-display"
                                         , Attr.href "#"
                                         ]
                                         [ text "Plan Your Event" ]
@@ -299,7 +299,7 @@ landingPageBodyNew =
                 , div [ class "flex justify-center md:justify-start" ]
                     [ button
                         -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
-                        [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
+                        [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded font-display shadow-lg"
                         ]
                         [ text "Plan Your Event" ]
                     ]
