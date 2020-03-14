@@ -223,7 +223,7 @@ view siteMetadata page =
                     in
                     { title = title
                     , body =
-                        Html.div [ class "font-body bg-gray-100" ]
+                        Html.div [ Attr.id "body", class "font-body bg-gray-100 min-h-screen flex flex-col" ]
                             [ Html.nav
                                 [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
                                 ]
@@ -252,6 +252,10 @@ view siteMetadata page =
                                     ]
                                 ]
                             , landingPageBodyNew
+                            , Html.footer
+                                [ Attr.class "flex font-display items-center justify-between flex-wrap bg-gray-900 p-6"
+                                ]
+                                []
                             ]
                     }
             , head = head page.frontmatter
@@ -259,7 +263,7 @@ view siteMetadata page =
 
 
 landingPageBodyNew =
-    div [ class "md:flex" ]
+    div [ class "md:flex flex-grow" ]
         [ div [ class "md:flex-shrink-0 md:w-1/2 p-6 md:p-12 lg:p-24" ]
             [ Html.img
                 [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
