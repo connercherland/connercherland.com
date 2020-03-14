@@ -57,16 +57,40 @@ icons =
          -- , Element.spacing 12
          -- , Font.size 30
         ]
-        [ iconLink Fa.spotify "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
-        , iconLink Fa.facebookSquare "http://facebook.com/connercherland/"
-        , iconLink Fa.instagram "https://instagram.com/connercherland/"
-        , iconLink Fa.twitterSquare "https://twitter.com/ConnerCherland/"
-        , iconLink Fa.youTubeSquare "https://www.youtube.com/user/itsconnercherland"
+        [ iconLink
+            { icon = Fa.spotify
+            , alt = "Spotify"
+            , url = "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
+            }
+        , iconLink
+            { icon = Fa.facebookSquare
+            , alt = "Facebook"
+            , url = "http://facebook.com/connercherland/"
+            }
+        , iconLink
+            { icon = Fa.instagram
+            , alt = "Instagram"
+            , url = "https://instagram.com/connercherland/"
+            }
+        , iconLink
+            { icon = Fa.twitterSquare
+            , alt = "Twitter"
+            , url = "https://twitter.com/ConnerCherland/"
+            }
+        , iconLink
+            { icon = Fa.youTubeSquare
+            , alt = "YouTube"
+            , url = "https://www.youtube.com/user/itsconnercherland"
+            }
         ]
 
 
-iconLink : Fa.Icon -> String -> Html msg
-iconLink iconType url =
+iconLink : { icon : Fa.Icon, alt : String, url : String } -> Html msg
+iconLink { icon, alt, url } =
     a
-        [ Attr.href url, class "text-gray-100 hover:text-gray-400 mr-4 text-2xl" ]
-        [ Fa.icon iconType ]
+        [ Attr.href url
+        , class "text-gray-100 hover:text-gray-400 mr-4 text-2xl"
+        , Attr.attribute "aria-label" alt
+        , Attr.rel "noopener"
+        ]
+        [ Fa.icon icon ]
