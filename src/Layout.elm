@@ -28,7 +28,12 @@ view model toggleMenuMsg main =
                     [ text "Bio" ]
                 , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                     [ text "Music" ]
-                , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "https://conner-cherland.square.site/", Attr.target "_blank" ]
+                , a
+                    [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+                    , Attr.href "https://conner-cherland.square.site/"
+                    , Attr.target "_blank"
+                    , Attr.rel "noopener"
+                    ]
                     [ text "Store" ]
                 , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                     [ text "Reviews" ]
