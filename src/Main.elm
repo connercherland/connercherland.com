@@ -16,6 +16,7 @@ import Head
 import Head.Seo as Seo
 import Html exposing (..)
 import Html.Attributes as Attr exposing (class)
+import Html.Events
 import Index
 import Markdown
 import MenuSvg
@@ -125,6 +126,7 @@ markdownDocument =
 
 type alias Model =
     { timezone : NamedZone
+    , menuOpen : Bool
     }
 
 
@@ -134,6 +136,7 @@ init =
             { name = "Pacific"
             , zone = TimeZone.america__los_angeles ()
             }
+      , menuOpen = False
       }
     , Cmd.none
     )
@@ -141,6 +144,7 @@ init =
 
 type Msg
     = OnPageChange
+    | ToggleMenu
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -148,6 +152,9 @@ update msg model =
     case msg of
         OnPageChange ->
             ( model, Cmd.none )
+
+        ToggleMenu ->
+            ( { model | menuOpen = not model.menuOpen }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -232,10 +239,10 @@ view siteMetadata page =
                                     ]
                                 , div [ class "block lg:hidden" ]
                                     [ button
-                                        [ class "flex items-center px-3 py-2 border rounded text-white border-gray-400 hover:text-white hover:border-white" ]
+                                        [ Html.Events.onClick ToggleMenu, class "flex items-center px-3 py-2 border rounded text-white border-gray-400 hover:text-white hover:border-white" ]
                                         [ MenuSvg.view ]
                                     ]
-                                , div [ class "w-full block lg:flex lg:items-center lg:w-auto text-lg" ]
+                                , div [ Attr.classList [ ( "hidden", not model.menuOpen ) ], class "w-full block lg:flex lg:items-center lg:w-auto text-lg" ]
                                     [ a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
                                         [ text "Bio" ]
                                     , a [ class "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4", Attr.href "#responsive-header" ]
