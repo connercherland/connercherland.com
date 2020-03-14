@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Example site built with elm-pages.",
   "scripts": {
-    "start": "npm run elm-graphql && elm-pages develop --port 1234",
-    "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
-    "elm-graphql": "elm-graphql https://npr5ilx1.api.sanity.io/v1/graphql/production/default --output elm-graphql-gen/ --base SanityApi --scalar-codecs Scalar",
-    "build": "npm run elm-graphql && elm-pages build",
-    "tailwind": "postcss tailwind.css -o src/tailwind-compiled.css"
+    "start": "npm run generate-all && elm-pages develop --port 1234",
+    "serve": "npm run generate-all && http-server ./dist -a localhost -p 3000 -c-1",
+    "generate:elm-graphql": "elm-graphql https://npr5ilx1.api.sanity.io/v1/graphql/production/default --output elm-graphql-gen/ --base SanityApi --scalar-codecs Scalar",
+    "generate-all": "npm run generate:elm-graphql && npm run generate:tailwind",
+    "build": "npm run generate-all && elm-pages build",
+    "generate:tailwind": "postcss tailwind.css -o src/tailwind-compiled.css"
   },
   "author": "Dillon Kearns",
   "license": "BSD-3",
