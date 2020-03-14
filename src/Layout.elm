@@ -41,7 +41,9 @@ view model toggleMenuMsg main =
                     [ text "Plan Your Event" ]
                 ]
             ]
-        , div [ class "md:flex flex-grow" ] main
+
+        -- , div [ class "md:flex flex-grow" ] main
+        , div [ class "flex-grow" ] main
         , Html.footer
             [ Attr.class "flex font-display justify-center flex-wrap bg-gray-900 p-6"
             ]
