@@ -201,13 +201,13 @@ view siteMetadata page =
                             pageView model siteMetadata page viewForPage
                     in
                     { title = title
-                    , body = Layout.view model ToggleMenu landingPageBodyNew
+                    , body = Layout.view model ToggleMenu landingPageBody
                     }
             , head = head page.frontmatter
             }
 
 
-landingPageBodyNew =
+landingPageBody =
     [ div [ class "md:flex flex-grow" ]
         [ div [ class "md:flex-shrink-0 md:w-1/2 p-6 md:p-12 lg:p-24" ]
             [ Html.img
@@ -653,29 +653,3 @@ publishedDateView metadata =
         (metadata.published
             |> Date.format "MMMM ddd, yyyy"
         )
-
-
-githubRepoLink : Element msg
-githubRepoLink =
-    Element.newTabLink []
-        { url = "https://github.com/dillonkearns/elm-pages"
-        , label =
-            Element.image
-                [ Element.width (Element.px 22)
-                , Font.color Palette.color.primary
-                ]
-                { src = ImagePath.toString Pages.images.github, description = "Github repo" }
-        }
-
-
-elmDocsLink : Element msg
-elmDocsLink =
-    Element.newTabLink []
-        { url = "https://package.elm-lang.org/packages/dillonkearns/elm-pages/latest/"
-        , label =
-            Element.image
-                [ Element.width (Element.px 22)
-                , Font.color Palette.color.primary
-                ]
-                { src = ImagePath.toString Pages.images.elmLogo, description = "Elm Package Docs" }
-        }
