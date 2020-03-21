@@ -43,7 +43,6 @@ import Youtube
 
 icon : Fa.Icon -> Element msg
 icon iconType =
-    --Fa.icon
     Fa.iconWithOptions iconType Fa.Solid [ Fa.InvertColor ] []
         |> Element.html
         |> Element.el
@@ -68,11 +67,6 @@ manifest =
 
 type alias Rendered =
     Element Msg
-
-
-
--- the intellij-elm plugin doesn't support type aliases for Programs so we need to use this line
--- main : Platform.Program Pages.Platform.Flags (Pages.Platform.Model Model Msg Metadata Rendered) (Pages.Platform.Msg Msg Metadata Rendered)
 
 
 main : Pages.Platform.Program Model Msg Metadata Rendered
@@ -192,34 +186,6 @@ view siteMetadata page =
                                     [ showsView model.timezone shows
                                     ]
                                 ]
-
-                        -- Element.column [ Element.width Element.fill, Element.height Element.fill ]
-                        --     [ header page.path
-                        --     , Element.row
-                        --         [ Element.width Element.fill
-                        --         , Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
-                        --         ]
-                        --         [ Youtube.view "_wZ-xT_Nacg"
-                        --             |> Element.html
-                        --             |> Element.el [ Element.centerX ]
-                        --         , Element.column
-                        --             [ Element.padding 30
-                        --             , Element.spacing 40
-                        --             , Element.Region.mainContent
-                        --             --, Element.width (Element.fill |> Element.maximum 800)
-                        --             , Element.centerX
-                        --             ]
-                        --             [ showsView model.timezone shows
-                        --             ]
-                        --         ]
-                        --     , footer
-                        --     ]
-                        --     |> Element.layout
-                        --         [ Element.width Element.fill
-                        --         , Font.size 20
-                        --         , Font.family [ Font.typeface "Montserrat" ]
-                        --         , Font.color (Element.rgba255 0 0 0 0.8)
-                        --         ]
                         }
                 , head = head page.frontmatter
                 }
@@ -248,8 +214,6 @@ landingPageBodyNew =
                 [ Attr.src <| ImagePath.toString Pages.images.connerLandingPage
                 , Attr.alt "Conner Cherland"
                 , class "min-w-fullobject-center"
-
-                -- , class "lg:w-1/2 md:flex-shrink-0"
                 ]
                 []
             ]
@@ -277,143 +241,14 @@ landingPageBodyNew =
                     ]
                 , div [ class "flex justify-center md:justify-start" ]
                     [ button
-                        -- [ class "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow font-display"
                         [ class "bg-black hover:bg-gray-800 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded font-display shadow-lg"
                         ]
                         [ text "Plan Your Event" ]
                     ]
                 ]
-
-            --                 [ p "4 albums recorded"
-            --                 , p "Over 700 shows"
-            --                 ]
-            --             , p "Let’s plan your next event today."
-            --             , points
-            --                 [ p "Weddings"
-            --                 , p "Corporate Events"
-            --                 , p "House Concerts"
-            --                 , p "Private Events"
-            --                 ]
             ]
         ]
     ]
-
-
-
--- { src = ImagePath.toString Pages.images.connerLandingPage
--- , description = "Conner Cherland"
--- }
--- Element.row
---     [ -- Element.spacing 40
---       Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
---     , Element.width Element.fill
---     ]
---     [ Element.row
---         [ Element.width (Element.fillPortion 1)
---         ]
---         [ Element.image
---             [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
---               Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
---             , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
---             ]
---             { src = ImagePath.toString Pages.images.connerLandingPage
---             , description = "Conner Cherland"
---             }
---         ]
---     , Element.column
---         [ Element.centerX
---         -- , Element.width (Element.fill |> Element.maximum 600)
---         , Element.width (Element.fillPortion 1)
---         -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
---         -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
---         , Element.spacing 30
---         , Font.center
---         ]
---         [ p "I’m a dedicated musician, based in Santa Barbara."
---         , points
---             [ p "4 albums recorded"
---             , p "Over 700 shows"
---             ]
---         , p "Let’s plan your next event today."
---         , points
---             [ p "Weddings"
---             , p "Corporate Events"
---             , p "House Concerts"
---             , p "Private Events"
---             ]
---         , Element.row
---             [ Element.centerX
---             , Element.Border.rounded 14
---             , Element.paddingXY 18 14
---             , Element.Background.gradient
---                 { angle = 0.2
---                 , steps =
---                     [ Element.rgb255 0 10 20
---                     , Element.rgb255 40 40 40
---                     ]
---                 }
---             , Font.color (Element.rgba255 255 255 255 0.9)
---             , Font.family [ Font.typeface "Roboto Condensed" ]
---             ]
---             [ Element.text "Plan Your Event" ]
---         ]
---     ]
--- landingPageBody =
---     Element.row
---         [ -- Element.spacing 40
---           Element.htmlAttribute (Attr.style "flex-wrap" "wrap")
---         , Element.width Element.fill
---         ]
---         [ Element.row
---             [ Element.width (Element.fillPortion 1)
---             ]
---             [ Element.image
---                 [ -- Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 300)
---                   Element.width (Element.fill |> Element.maximum 600 |> Element.minimum 200)
---                 , Element.paddingEach { top = 0, right = 0, bottom = 40, left = 0 }
---                 ]
---                 { src = ImagePath.toString Pages.images.connerLandingPage
---                 , description = "Conner Cherland"
---                 }
---             ]
---         , Element.column
---             [ Element.centerX
---             -- , Element.width (Element.fill |> Element.maximum 600)
---             , Element.width (Element.fillPortion 1)
---             -- , Element.width (Element.fillPortion 1 |> Element.minimum 300)
---             -- , Element.width (Element.fillPortion 1 |> Element.minimum 150)
---             , Element.spacing 30
---             , Font.center
---             ]
---             [ p "I’m a dedicated musician, based in Santa Barbara."
---             , points
---                 [ p "4 albums recorded"
---                 , p "Over 700 shows"
---                 ]
---             , p "Let’s plan your next event today."
---             , points
---                 [ p "Weddings"
---                 , p "Corporate Events"
---                 , p "House Concerts"
---                 , p "Private Events"
---                 ]
---             , Element.row
---                 [ Element.centerX
---                 , Element.Border.rounded 14
---                 , Element.paddingXY 18 14
---                 , Element.Background.gradient
---                     { angle = 0.2
---                     , steps =
---                         [ Element.rgb255 0 10 20
---                         , Element.rgb255 40 40 40
---                         ]
---                     }
---                 , Font.color (Element.rgba255 255 255 255 0.9)
---                 , Font.family [ Font.typeface "Roboto Condensed" ]
---                 ]
---                 [ Element.text "Plan Your Event" ]
---             ]
---         ]
 
 
 points pointList =
@@ -445,8 +280,6 @@ showView zone show =
             [ dateFormatter zone show.startTime
                 |> text
             ]
-
-        -- |> Element.el [ Font.bold ]
         , div [] [ text show.venue ]
         , div []
             [ timeFormatter zone show.startTime
@@ -626,8 +459,6 @@ footer =
         , Element.Region.footer
         , Element.alignBottom
         , Element.padding 20
-
-        --, Element.Border.widthEach { bottom = 1, left = 0, right = 0, top = 0 }
         , Element.Background.gradient
             { angle = 0.2
             , steps =
@@ -641,10 +472,7 @@ footer =
 
 icons =
     Html.div
-        [--     Element.centerX
-         -- , Element.spacing 12
-         -- , Font.size 30
-        ]
+        []
         [ iconLink Fa.spotify "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8"
         , iconLink Fa.facebookSquare "http://facebook.com/connercherland/"
         , iconLink Fa.instagram "https://instagram.com/connercherland/"
@@ -658,12 +486,6 @@ iconLink iconType url =
     a
         [ Attr.href url, class "text-gray-100 hover:text-gray-400 mr-4 text-2xl" ]
         [ Fa.icon iconType ]
-
-
-
--- |> Element.html
--- |> Element.el
--- [ Element.mouseOver [ Font.color (Element.rgba255 255 255 255 0.7) ] ]
 
 
 responsive { small, large } =
