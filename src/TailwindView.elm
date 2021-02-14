@@ -2,7 +2,7 @@ module TailwindView exposing (view)
 
 import Css exposing (px)
 import Css.Global
-import Html.Styled exposing (Html, div, img, text)
+import Html.Styled exposing (Html, button, div, img, text)
 import Html.Styled.Attributes exposing (css, href, src)
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
@@ -132,10 +132,38 @@ merchSection =
             [ css
                 [ Tw.flex_1
                 , Tw.flex
+                , Tw.flex_col
                 , Tw.justify_center
-                , Tw.align_middle
+                , Tw.text_center
                 , Tw.p_4
+                , Tw.uppercase
+                , Tw.space_y_4
                 ]
             ]
-            [ text "Listen to my newest album!" ]
+            [ div
+                [ css
+                    [ Tw.font_bold
+                    , Tw.text_4xl
+                    ]
+                ]
+                [ text "Love Songs"
+                ]
+            , div []
+                [ text "Listen to my newest album!"
+                ]
+            , div []
+                [ button
+                    [ css
+                        [ Tw.border_4
+                        , Tw.border_yellow_300
+                        , Tw.text_yellow_300
+                        , Tw.px_12
+                        , Tw.py_2
+                        , Tw.uppercase
+                        ]
+                    ]
+                    [ text "Listen"
+                    ]
+                ]
+            ]
         ]
