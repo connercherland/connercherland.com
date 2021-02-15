@@ -5,7 +5,7 @@
   "scripts": {
     "start": "elm-pages develop --port 1234",
     "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
-    "build:tailwind": "elm-tailwind-modules --dir ./tailwind",
+    "build:tailwind": "elm-tailwind-modules --dir ./tailwind --tailwind-config  $(pwd)/tailwind.config.js",
     "build:pages": "elm-pages-beta",
     "build": "npm-run-all build:tailwind build:pages"
   },

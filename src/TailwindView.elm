@@ -14,8 +14,7 @@ view =
         div []
             [ div
                 [ css
-                    [ Tw.bg_gray_50
-                    , Css.backgroundImage (Css.url imageUrl)
+                    [ Css.backgroundImage (Css.url imageUrl)
                     , Tw.bg_cover
                     , Tw.min_h_screen
                     , Css.backgroundRepeat Css.noRepeat
@@ -162,8 +161,8 @@ merchSection =
                     , Attr.target "noopener"
                     , css
                         [ Tw.border_4
-                        , Tw.border_yellow_300
-                        , Tw.text_yellow_300
+                        , Tw.border_highlight
+                        , Tw.text_highlight
                         , Tw.px_12
                         , Tw.py_2
                         , Tw.uppercase
@@ -180,8 +179,8 @@ myButton title =
     button
         [ css
             [ Tw.border_4
-            , Tw.border_yellow_300
-            , Tw.text_yellow_300
+            , Tw.border_highlight
+            , Tw.text_highlight
             , Tw.px_12
             , Tw.py_2
             , Tw.uppercase
@@ -196,8 +195,8 @@ myButtonSolid title =
     button
         [ css
             [ Tw.border_4
-            , Tw.border_yellow_300
-            , Tw.text_yellow_300
+            , Tw.border_highlight
+            , Tw.text_highlight
             , Tw.px_12
             , Tw.py_2
             , Tw.uppercase
@@ -215,7 +214,7 @@ showsSection =
             [ Tw.flex
             , Tw.flex_col
             , Tw.space_y_8
-            , Tw.bg_gray_200
+            , Tw.bg_lightGray
             , Tw.p_8
             ]
         ]
@@ -297,7 +296,7 @@ footer =
             [ div
                 [ css
                     [ Tw.py_8
-                    , Tw.bg_gray_400
+                    , Tw.bg_darkGray
                     , Tw.justify_center
                     , Tw.flex
                     ]
@@ -323,7 +322,7 @@ footer =
                     , Tw.w_full
                     , Tw.justify_center
                     , Tw.py_8
-                    , Tw.bg_gray_700
+                    , Tw.bg_darkGray
                     ]
                 ]
                 [ logo
