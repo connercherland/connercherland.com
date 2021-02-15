@@ -4,6 +4,7 @@ import Css exposing (px)
 import Css.Global
 import Html.Styled as Html exposing (Html, button, div, h2, img, text)
 import Html.Styled.Attributes exposing (css, href, src)
+import Icon
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
@@ -272,14 +273,26 @@ footer =
         [ div []
             [ div
                 [ css
-                    [ Tw.flex
-                    , Tw.w_full
-                    , Tw.justify_center
-                    , Tw.py_8
+                    [ Tw.py_8
                     , Tw.bg_gray_400
+                    , Tw.justify_center
+                    , Tw.flex
                     ]
                 ]
-                [ text "asdf"
+                [ div
+                    [ css
+                        [ Tw.flex
+                        , Tw.max_w_sm
+                        , Tw.w_full
+                        , Tw.justify_around
+                        ]
+                    ]
+                    [ div [ css [ Tw.w_8 ] ] [ Icon.youtube ]
+                    , div [ css [ Tw.w_8 ] ] [ Icon.spotify ]
+                    , div [ css [ Tw.w_8 ] ] [ Icon.facebook ]
+                    , div [ css [ Tw.w_8 ] ] [ Icon.instagram ]
+                    , div [ css [ Tw.w_8 ] ] [ Icon.twitter ]
+                    ]
                 ]
             , div
                 [ css
