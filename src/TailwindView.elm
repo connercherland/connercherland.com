@@ -2,14 +2,14 @@ module TailwindView exposing (view)
 
 import Css exposing (px)
 import Css.Global
-import Html.Styled exposing (Html, button, div, h2, img, text)
+import Html.Styled as Html exposing (Html, button, div, h2, img, text)
 import Html.Styled.Attributes exposing (css, href, src)
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
 
 view =
-    Html.Styled.toUnstyled <|
+    Html.toUnstyled <|
         div []
             [ div
                 [ css
@@ -31,13 +31,7 @@ view =
                         , Tw.py_8
                         ]
                     ]
-                    [ img
-                        [ src logoUrl
-                        , css
-                            [ Css.height (px 160)
-                            ]
-                        ]
-                        []
+                    [ logo
                     ]
                 , navItems
                 , div
@@ -54,6 +48,7 @@ view =
                 ]
             , merchSection
             , showsSection
+            , footer
             ]
 
 
@@ -260,3 +255,42 @@ show =
     , cityName = "Santa Barbara, CA"
     , showType = "Free Event"
     }
+
+
+logo =
+    img
+        [ src logoUrl
+        , css
+            [ Css.height (px 160)
+            ]
+        ]
+        []
+
+
+footer =
+    Html.footer []
+        [ div []
+            [ div
+                [ css
+                    [ Tw.flex
+                    , Tw.w_full
+                    , Tw.justify_center
+                    , Tw.py_8
+                    , Tw.bg_gray_400
+                    ]
+                ]
+                [ text "asdf"
+                ]
+            , div
+                [ css
+                    [ Tw.flex
+                    , Tw.w_full
+                    , Tw.justify_center
+                    , Tw.py_8
+                    , Tw.bg_gray_700
+                    ]
+                ]
+                [ logo
+                ]
+            ]
+        ]
