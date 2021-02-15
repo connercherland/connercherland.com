@@ -2,8 +2,8 @@ module TailwindView exposing (view)
 
 import Css exposing (px)
 import Css.Global
-import Html.Styled as Html exposing (Html, button, div, h2, img, text)
-import Html.Styled.Attributes exposing (css, href, src)
+import Html.Styled as Html exposing (Html, a, button, div, h2, img, text)
+import Html.Styled.Attributes as Attr exposing (css, href, src)
 import Icon
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
@@ -149,8 +149,10 @@ merchSection =
                 [ text "Listen to my newest album!"
                 ]
             , div []
-                [ button
-                    [ css
+                [ a
+                    [ Attr.href "https://open.spotify.com/album/4HacgsEJ1GBWFb1XcrXI8t?si=toBv05h1Tcih-4k75F269w"
+                    , Attr.target "noopener"
+                    , css
                         [ Tw.border_4
                         , Tw.border_yellow_300
                         , Tw.text_yellow_300
