@@ -57,11 +57,7 @@ navItems : Html msg
 navItems =
     div
         [ css
-            [ --Tw.justify_center
-              Tw.flex
-
-            --, Tw.p_16
-            --, maxWidth (px 1400)
+            [ Tw.flex
             , Tw.justify_center
             ]
         ]
@@ -70,19 +66,31 @@ navItems =
                 [ Tw.text_white
                 , Tw.flex
                 , Tw.justify_evenly
-                , Tw.p_4
                 , Tw.w_full
                 , Tw.max_w_screen_lg
                 , Tw.text_lg
+                , Tw.items_center
+                , Tw.flex_wrap
                 ]
             ]
-            ([ "About"
-             , "Music"
-             , "Press"
-             , "Dates"
-             , "Store"
-             ]
-                |> List.map (\navItem -> div [] [ text navItem ])
+            (([ "About"
+              , "Music"
+              , "Press"
+              , "Dates"
+              , "Store"
+              ]
+                |> List.map
+                    (\navItem ->
+                        div [ css [] ] [ text navItem ]
+                    )
+             )
+                ++ [ div
+                        [ css
+                            []
+                        ]
+                        [ myButtonSolid "Plan Your Event"
+                        ]
+                   ]
             )
         ]
 
@@ -184,6 +192,22 @@ myButton title =
         ]
 
 
+myButtonSolid title =
+    button
+        [ css
+            [ Tw.border_4
+            , Tw.border_yellow_300
+            , Tw.text_yellow_300
+            , Tw.px_12
+            , Tw.py_2
+            , Tw.uppercase
+            , Tw.bg_white
+            ]
+        ]
+        [ text title
+        ]
+
+
 showsSection : Html msg
 showsSection =
     div
@@ -224,9 +248,6 @@ showView =
     div
         [ css
             [ Tw.flex
-
-            --, Tw.justify_around
-            --, Tw.w_full
             , Tw.flex_col
             , Tw.text_center
             , Tw.space_y_4
