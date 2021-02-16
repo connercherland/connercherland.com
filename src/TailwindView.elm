@@ -72,15 +72,20 @@ navItems =
                 , Tw.flex_wrap
                 ]
             ]
-            (([ "About"
-              , "Music"
-              , "Press"
-              , "Dates"
-              , "Store"
+            (([ text "About"
+              , text "Music"
+
+              --, "Press"
+              , text "Dates"
+              , a
+                    [ href "https://conner-cherland.square.site/"
+                    , Attr.target "noopener"
+                    ]
+                    [ text "Store" ]
               ]
                 |> List.map
                     (\navItem ->
-                        div [ css [] ] [ text navItem ]
+                        div [ css [] ] [ navItem ]
                     )
              )
                 ++ [ div
