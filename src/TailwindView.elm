@@ -161,28 +161,19 @@ merchSection =
                 [ text "Listen to my newest album!"
                 ]
             , div []
-                [ a
+                [ myButton
                     [ Attr.href "https://open.spotify.com/album/4HacgsEJ1GBWFb1XcrXI8t?si=toBv05h1Tcih-4k75F269w"
                     , Attr.target "noopener"
-                    , css
-                        [ Tw.border_4
-                        , Tw.border_highlight
-                        , Tw.text_highlight
-                        , Tw.px_12
-                        , Tw.py_2
-                        , Tw.uppercase
-                        ]
                     ]
-                    [ text "Listen"
-                    ]
+                    "Listen"
                 ]
             ]
         ]
 
 
-myButton title =
-    button
-        [ css
+myButton attrs title =
+    a
+        (css
             [ Tw.border_4
             , Tw.border_highlight
             , Tw.text_highlight
@@ -190,8 +181,13 @@ myButton title =
             , Tw.py_2
             , Tw.uppercase
             , Tw.bg_white
+            , Css.hover
+                [ Tw.text_white
+                , Tw.bg_highlight
+                ]
             ]
-        ]
+            :: attrs
+        )
         [ text title
         ]
 
@@ -272,7 +268,7 @@ showView =
             ]
         , div [] [ text show.cityName ]
         , div []
-            [ myButton show.showType
+            [ myButton [] show.showType
             ]
         ]
 
