@@ -201,11 +201,11 @@ myButtonSolid title =
         [ css
             [ Tw.border_4
             , Tw.border_highlight
-            , Tw.text_highlight
+            , Tw.bg_highlight
+            , Tw.text_white
             , Tw.px_12
             , Tw.py_2
             , Tw.uppercase
-            , Tw.bg_white
             ]
         ]
         [ text title
