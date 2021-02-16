@@ -7,12 +7,14 @@ import Element.Border
 import Element.Font as Font
 import Element.Region
 import Html exposing (Html)
+import Html.Styled as Html
 import Pages
 import Pages.Directory as Directory exposing (Directory)
 import Pages.ImagePath as ImagePath
 import Pages.PagePath as PagePath exposing (PagePath)
 import Pages.StaticHttp as StaticHttp
 import Palette
+import TailwindView
 import TemplateType exposing (TemplateType)
 
 
@@ -154,25 +156,7 @@ view :
     -> { body : Html msg, title : String }
 view globalStaticData page model toMsg pageView =
     { title = pageView.title
-    , body =
-        Element.column
-            [ Element.width Element.fill ]
-            [ header page.path
-            , Element.column
-                [ Element.padding 30
-                , Element.spacing 40
-                , Element.Region.mainContent
-                , Element.width (Element.fill |> Element.maximum 800)
-                , Element.centerX
-                ]
-                pageView.body
-            ]
-            |> Element.layout
-                [ Element.width Element.fill
-                , Font.size 20
-                , Font.family [ Font.typeface "Roboto" ]
-                , Font.color (Element.rgba255 0 0 0 0.8)
-                ]
+    , body = Html.toUnstyled TailwindView.view
     }
 
 

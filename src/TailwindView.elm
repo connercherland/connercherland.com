@@ -9,47 +9,47 @@ import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
 
+view : Html msg
 view =
-    Html.toUnstyled <|
-        div []
-            [ div
-                [ css
-                    [ Css.backgroundImage (Css.url imageUrl)
-                    , Tw.bg_cover
-                    , Tw.min_h_screen
-                    , Css.backgroundRepeat Css.noRepeat
-                    , Css.backgroundPosition Css.center
-                    ]
+    div []
+        [ div
+            [ css
+                [ Css.backgroundImage (Css.url imageUrl)
+                , Tw.bg_cover
+                , Tw.min_h_screen
+                , Css.backgroundRepeat Css.noRepeat
+                , Css.backgroundPosition Css.center
                 ]
-                [ -- This will give us the standard tailwind style-reset as well as the fonts
-                  Css.Global.global Tw.globalStyles
-                , div
-                    [ css
-                        [ Tw.flex
-                        , Tw.w_full
-                        , Tw.justify_center
-                        , Tw.py_8
-                        ]
-                    ]
-                    [ logo
-                    ]
-                , navItems
-                , div
-                    [ css
-                        [ Tw.mt_8
-                        , Tw.flex
-
-                        -- We use breakpoints like this
-                        -- However, you need to order your breakpoints from hight to low :/
-                        , Bp.lg [ Tw.mt_0, Tw.flex_shrink_0 ]
-                        ]
-                    ]
-                    []
-                ]
-            , merchSection
-            , showsSection
-            , footer
             ]
+            [ -- This will give us the standard tailwind style-reset as well as the fonts
+              Css.Global.global Tw.globalStyles
+            , div
+                [ css
+                    [ Tw.flex
+                    , Tw.w_full
+                    , Tw.justify_center
+                    , Tw.py_8
+                    ]
+                ]
+                [ logo
+                ]
+            , navItems
+            , div
+                [ css
+                    [ Tw.mt_8
+                    , Tw.flex
+
+                    -- We use breakpoints like this
+                    -- However, you need to order your breakpoints from hight to low :/
+                    , Bp.lg [ Tw.mt_0, Tw.flex_shrink_0 ]
+                    ]
+                ]
+                []
+            ]
+        , merchSection
+        , showsSection
+        , footer
+        ]
 
 
 navItems : Html msg
