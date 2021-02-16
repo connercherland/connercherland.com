@@ -67,4 +67,4 @@ view allMetadata static rendered =
 
 cloudinaryIcon : ImagePath pathKey
 cloudinaryIcon =
-    Cloudinary.urlRectangular "v1603234028/elm-pages/elm-pages-icon" (Just MimeType.Png) ( 300, 157 )
+    Cloudinary.urlRectangular "v1613279618/d2c8ce93487154e6ba130d9d590171ce_v155te.png" (Just MimeType.Png) ( 300, 157 )

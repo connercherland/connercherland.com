@@ -12,7 +12,7 @@ urlRectangular :
 urlRectangular asset format ( width, height ) =
     let
         base =
-            "https://res.cloudinary.com/dillonkearns/image/upload"
+            "https://res.cloudinary.com/connercherland/image/upload"
 
         fetch_format =
             case format of
@@ -48,7 +48,7 @@ url :
 url asset format width =
     let
         base =
-            "https://res.cloudinary.com/dillonkearns/image/upload"
+            "https://res.cloudinary.com/connercherland/image/upload"
 
         fetch_format =
             case format of
@@ -83,7 +83,7 @@ urlSquare :
 urlSquare asset format width =
     let
         base =
-            "https://res.cloudinary.com/dillonkearns/image/upload"
+            "https://res.cloudinary.com/connercherland/image/upload"
 
         fetch_format =
             case format of

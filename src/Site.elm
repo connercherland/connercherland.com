@@ -40,7 +40,7 @@ staticData siteMetadata =
 
 canonicalUrl : String
 canonicalUrl =
-    "https://elm-pages-starter.netlify.com"
+    "https://connercherland.netlify.app"
 
 
 manifest : Manifest.Config Pages.PathKey
@@ -49,12 +49,12 @@ manifest =
     , categories = [ Pages.Manifest.Category.education ]
     , displayMode = Manifest.Standalone
     , orientation = Manifest.Portrait
-    , description = "elm-pages-starter - A statically typed site generator."
+    , description = "Conner Cherland Music"
     , iarcRatingId = Nothing
-    , name = "elm-pages-starter"
+    , name = "Conner Cherland Music"
     , themeColor = Just Color.white
     , startUrl = pages.index
-    , shortName = Just "elm-pages-starter"
+    , shortName = Just "Conner Cherland"
     , sourceIcon = images.iconPng
     , icons =
         [ icon webp 192
@@ -67,7 +67,7 @@ manifest =
 
 tagline : String
 tagline =
-    "Starter blog for elm-pages"
+    "Conner Cherland Music"
 
 
 webp : MimeType.MimeImage
@@ -92,9 +92,4 @@ cloudinaryIcon :
     -> Int
     -> ImagePath pathKey
 cloudinaryIcon mimeType width =
-    Cloudinary.urlSquare "v1603234028/elm-pages/elm-pages-icon" (Just mimeType) width
-
-
-socialIcon : ImagePath pathKey
-socialIcon =
-    Cloudinary.urlSquare "v1603234028/elm-pages/elm-pages-icon" Nothing 250
+    Cloudinary.urlSquare "v1613279618/d2c8ce93487154e6ba130d9d590171ce_v155te.png" (Just mimeType) width
