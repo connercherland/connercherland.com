@@ -47,7 +47,7 @@ view =
                 []
             ]
         , merchSection
-        , showsSection
+        , covidDatesSection
         , footer
         ]
 
@@ -192,6 +192,7 @@ myButton attrs title =
         ]
 
 
+myButtonSolid : String -> Html msg
 myButtonSolid title =
     button
         [ css
@@ -202,9 +203,66 @@ myButtonSolid title =
             , Tw.px_12
             , Tw.py_2
             , Tw.uppercase
+            , Tw.rounded_xl
             ]
         ]
-        [ text title
+        [ text title ]
+
+
+covidDatesSection : Html msg
+covidDatesSection =
+    div
+        [ css
+            [ Tw.flex
+            , Tw.flex_col
+            , Tw.space_y_8
+            , Tw.bg_lightGray
+            , Tw.p_8
+            ]
+        ]
+        [ h2
+            [ css
+                [ Tw.text_center
+                , Tw.text_4xl
+                , Tw.font_bold
+                , Tw.uppercase
+                ]
+            ]
+            [ text "Dates" ]
+        , div
+            [ css
+                [ Tw.space_y_8
+                , Tw.flex_col
+                , Bp.md
+                    [ Tw.flex_row
+                    , Tw.text_center
+                    ]
+                ]
+            ]
+            [ Html.p [] [ text "Due to COVID19, most of my public shows are now socially distant house concerts." ]
+            , div
+                [ css
+                    [ Tw.flex
+                    , Tw.items_center
+                    , Tw.justify_center
+                    ]
+                ]
+                [ div [ css [ Tw.max_w_sm ] ]
+                    [ Html.iframe
+                        [ Attr.src "https://www.youtube.com/embed/bIjLIrRrt3M"
+                        , Attr.title "YouTube video player"
+                        , Attr.attribute "frameborder" "0"
+                        , Attr.attribute "allow" "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        , Attr.attribute "allowfullscreen" ""
+                        ]
+                        []
+                    ]
+                ]
+            , Html.p [] [ text "Please let me know if you’d like one, and we’ll figure out a date!" ]
+            , Html.p []
+                [ text "Love," ]
+            , Html.p [] [ text "Conner" ]
+            ]
         ]
 
 
@@ -227,7 +285,7 @@ showsSection =
                 , Tw.uppercase
                 ]
             ]
-            [ text "Upcoming Shows" ]
+            [ text "Dates" ]
         , div
             [ css
                 [ Tw.space_y_8
