@@ -73,9 +73,7 @@ navItems =
             ]
             (([ text "About"
               , text "Music"
-
-              --, "Press"
-              , text "Dates"
+              , a [ href "/press" ] [ text "Press" ]
               , a
                     [ href "https://conner-cherland.square.site/"
                     , Attr.target "noopener"

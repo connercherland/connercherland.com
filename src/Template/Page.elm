@@ -60,8 +60,7 @@ view :
 view allMetadata static rendered =
     { title = static.metadata.title
     , body =
-        [ rendered
-        ]
+        rendered
     }
 
 

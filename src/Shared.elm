@@ -64,11 +64,11 @@ template =
 
 
 type alias RenderedBody =
-    Element Never
+    List (H.Html Never)
 
 
 type alias PageView msg =
-    { title : String, body : List (Element msg) }
+    { title : String, body : List (H.Html msg) }
 
 
 type Msg
@@ -97,7 +97,7 @@ type alias Model =
 map : (msg1 -> msg2) -> PageView msg1 -> PageView msg2
 map fn doc =
     { title = doc.title
-    , body = List.map (Element.map fn) doc.body
+    , body = List.map (H.map fn) doc.body
     }
 
 
@@ -155,10 +155,32 @@ view globalStaticData page model toMsg pageView =
     { title = pageView.title
     , body =
         H.toUnstyled <|
-            div []
+            div
+                [ css
+                    [ Tw.flex
+                    , Tw.flex_col
+
+                    --, Tw.max_w_xl
+                    ]
+                ]
                 [ -- This will give us the standard tailwind style-reset as well as the fonts
                   Css.Global.global Tw.globalStyles
-                , TailwindView.view
+                , if page.path == Pages.pages.index then
+                    TailwindView.view
+
+                  else
+                    div
+                        [ css
+                            [ Tw.flex
+                            , Tw.flex_col
+                            , Tw.max_w_2xl
+                            , Tw.items_center
+                            , Tw.justify_center
+                            , Tw.justify_between
+                            , Tw.mx_auto
+                            ]
+                        ]
+                        pageView.body
                 , footer
                 ]
     }

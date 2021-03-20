@@ -1,9 +1,11 @@
 module Main exposing (main)
 
+--import Html exposing (Html)
+
 import Element exposing (Element)
 import Feed
 import Head
-import Html exposing (Html)
+import Html.Styled
 import Json.Decode
 import Markdown.Parser
 import Markdown.Renderer
@@ -14,6 +16,7 @@ import Pages.Platform
 import Pages.StaticHttp as StaticHttp
 import Shared
 import Site
+import TailwindMarkdownRenderer
 import TemplateModulesBeta
 import TemplateType exposing (TemplateType)
 
@@ -38,8 +41,7 @@ generateFiles :
     ->
         StaticHttp.Request
             (List
-                (Result
-                    String
+                (Result String
                     { path : List String
                     , content : String
                     }
@@ -52,21 +54,11 @@ generateFiles siteMetadata =
         ]
 
 
-markdownDocument : { extension : String, metadata : Json.Decode.Decoder TemplateType, body : String -> Result error (Element msg) }
+markdownDocument : { extension : String, metadata : Json.Decode.Decoder TemplateType, body : String -> Result String (List (Html.Styled.Html msg)) }
 markdownDocument =
     { extension = "md"
     , metadata = TemplateType.decoder
-    , body =
-        \markdownBody ->
-            Markdown.Parser.parse markdownBody
-                |> Result.withDefault []
-                |> Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer
-                |> Result.withDefault [ Html.text "" ]
-                |> Html.div []
-                |> Element.html
-                |> List.singleton
-                |> Element.paragraph [ Element.width Element.fill ]
-                |> Ok
+    , body = TailwindMarkdownRenderer.renderMarkdown
     }
 
 
