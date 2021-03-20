@@ -1,11 +1,16 @@
 module Shared exposing (Model, Msg(..), PageView, RenderedBody, SharedMsg(..), StaticData, template)
 
+import Css
+import Css.Global
 import Element exposing (Element)
 import Html exposing (Html)
-import Html.Styled as Html
+import Html.Styled as H exposing (div)
+import Html.Styled.Attributes as Attr exposing (css)
+import Icon
 import Pages
 import Pages.PagePath exposing (PagePath)
 import Pages.StaticHttp as StaticHttp
+import Tailwind.Utilities as Tw
 import TailwindView
 import TemplateType exposing (TemplateType)
 
@@ -148,5 +153,79 @@ view :
     -> { body : Html msg, title : String }
 view globalStaticData page model toMsg pageView =
     { title = pageView.title
-    , body = Html.toUnstyled TailwindView.view
+    , body =
+        H.toUnstyled <|
+            div []
+                [ -- This will give us the standard tailwind style-reset as well as the fonts
+                  Css.Global.global Tw.globalStyles
+                , TailwindView.view
+                , footer
+                ]
     }
+
+
+footer =
+    H.footer []
+        [ div []
+            [ div
+                [ css
+                    [ Tw.py_8
+                    , Tw.bg_darkGray
+                    , Tw.justify_center
+                    , Tw.flex
+                    ]
+                ]
+                [ div
+                    [ css
+                        [ Tw.flex
+                        , Tw.max_w_sm
+                        , Tw.w_full
+                        , Tw.justify_around
+                        ]
+                    ]
+                    ([ ( Icon.youtube, "https://www.youtube.com/user/itsconnercherland" )
+                     , ( Icon.spotify, "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8" )
+                     , ( Icon.facebook, "https://facebook.com/connercherland/" )
+                     , ( Icon.instagram, "https://instagram.com/connercherland/" )
+                     , ( Icon.twitter, "https://twitter.com/ConnerCherland/" )
+                     ]
+                        |> List.map
+                            (\( icon, url ) ->
+                                div [ css [ Tw.w_8 ] ]
+                                    [ H.a
+                                        [ Attr.href url
+                                        , Attr.target "noopener"
+                                        ]
+                                        [ icon ]
+                                    ]
+                            )
+                    )
+                ]
+            , div
+                [ css
+                    [ Tw.flex
+                    , Tw.w_full
+                    , Tw.justify_center
+                    , Tw.py_8
+                    , Tw.bg_darkGray
+                    ]
+                ]
+                [ logo
+                ]
+            ]
+        ]
+
+
+logo =
+    H.img
+        [ Attr.src logoUrl
+        , css
+            [ Css.height (Css.px 160)
+            ]
+        ]
+        []
+
+
+logoUrl : String
+logoUrl =
+    "https://res.cloudinary.com/connercherland/image/upload/v1613279618/d2c8ce93487154e6ba130d9d590171ce_v155te.png"

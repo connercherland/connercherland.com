@@ -48,7 +48,6 @@ view =
             ]
         , merchSection
         , covidDatesSection
-        , footer
         ]
 
 
@@ -347,55 +346,3 @@ logo =
             ]
         ]
         []
-
-
-footer =
-    Html.footer []
-        [ div []
-            [ div
-                [ css
-                    [ Tw.py_8
-                    , Tw.bg_darkGray
-                    , Tw.justify_center
-                    , Tw.flex
-                    ]
-                ]
-                [ div
-                    [ css
-                        [ Tw.flex
-                        , Tw.max_w_sm
-                        , Tw.w_full
-                        , Tw.justify_around
-                        ]
-                    ]
-                    ([ ( Icon.youtube, "https://www.youtube.com/user/itsconnercherland" )
-                     , ( Icon.spotify, "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8" )
-                     , ( Icon.facebook, "https://facebook.com/connercherland/" )
-                     , ( Icon.instagram, "https://instagram.com/connercherland/" )
-                     , ( Icon.twitter, "https://twitter.com/ConnerCherland/" )
-                     ]
-                        |> List.map
-                            (\( icon, url ) ->
-                                div [ css [ Tw.w_8 ] ]
-                                    [ a
-                                        [ href url
-                                        , Attr.target "noopener"
-                                        ]
-                                        [ icon ]
-                                    ]
-                            )
-                    )
-                ]
-            , div
-                [ css
-                    [ Tw.flex
-                    , Tw.w_full
-                    , Tw.justify_center
-                    , Tw.py_8
-                    , Tw.bg_darkGray
-                    ]
-                ]
-                [ logo
-                ]
-            ]
-        ]
