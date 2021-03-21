@@ -159,6 +159,7 @@ view globalStaticData page model toMsg pageView =
                 [ css
                     [ Tw.flex
                     , Tw.flex_col
+                    , Tw.h_screen
 
                     --, Tw.max_w_xl
                     ]
@@ -178,6 +179,7 @@ view globalStaticData page model toMsg pageView =
                             , Tw.justify_center
                             , Tw.justify_between
                             , Tw.mx_auto
+                            , Tw.flex_grow
                             ]
                         ]
                         pageView.body
