@@ -9,6 +9,7 @@
     "elm-version": "0.19.1",
     "dependencies": {
         "direct": {
+            "MartinSStewart/elm-serialize": "1.2.5",
             "avh4/elm-color": "1.0.0",
             "danyx23/elm-mimetype": "4.0.1",
             "dillonkearns/elm-bcp47-language-tag": "1.0.1",
@@ -30,12 +31,16 @@
             "mdgriffith/elm-ui": "1.1.8",
             "miniBill/elm-codec": "2.0.0",
             "noahzgordon/elm-color-extra": "1.0.2",
+            "robinheghan/murmur3": "1.0.0",
             "rtfeldman/elm-css": "16.1.0",
             "tripokey/elm-fuzzy": "5.2.1",
+            "vito/elm-ansi": "10.0.1",
             "zwilias/json-decode-exploration": "6.0.0"
         },
         "indirect": {
+            "bburdette/toop": "1.0.1",
             "billstclair/elm-xml-eeue56": "1.0.1",
+            "danfishgold/base64-bytes": "1.1.0",
             "dmy/elm-imf-date-time": "1.0.1",
             "elm/bytes": "1.0.8",
             "elm/file": "1.0.5",
