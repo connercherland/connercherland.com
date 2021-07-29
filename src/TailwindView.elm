@@ -236,7 +236,7 @@ covidDatesSection =
                     ]
                 ]
             ]
-            [ Html.p [] [ text "Due to COVID19, most of my public shows are now socially distant house concerts." ]
+            [ Html.p [] [ text "Due to COVID19, all of my shows are now private!" ]
             , div
                 [ css
                     [ Tw.flex
@@ -255,7 +255,8 @@ covidDatesSection =
                         []
                     ]
                 ]
-            , Html.p [] [ text "Please let me know if you’d like one, and we’ll figure out a date!" ]
+            , Html.p [] [ text "Email: Info@connercherland.com" ]
+            , Html.p [] [ text "If you’d like me to play for your friends and family for a house/backyard concert, please send me an email with the date(s), time(s), and any other specifications. All I require is a power source and I’m good to go." ]
             , Html.p []
                 [ text "Love," ]
             , Html.p [] [ text "Conner" ]
