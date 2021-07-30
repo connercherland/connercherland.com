@@ -5,6 +5,10 @@
     "build": "elm-pages build"
   },
   "devDependencies": {
-    "elm-pages": "file:elm-pages"
+    "elm-pages": "file:elm-pages",
+    "elm-tailwind-modules": "^0.3.2"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.4.1"
   }
 }

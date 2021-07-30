@@ -4,12 +4,12 @@ type: page
 ---
 
 - [Musician Lifts Spirits with Secret Socially Distanced Concerts"](https://www.edhat.com/news/musician-lifts-spirits-with-secret-socially-distanced-concerts)
-- [American Songwriter – "Daily Discovery: Conner Cherland, 'Sides'"] (https://americansongwriter.com/daily-discovery-conner-cherland-sides/)
+- [American Songwriter – "Daily Discovery: Conner Cherland, 'Sides'"](https://americansongwriter.com/daily-discovery-conner-cherland-sides/)
 - [Santa Barbara News Press – "Just In Time For Valentines Day"](https://newspress.com/just-in-time-for-valentines-day/)
 - [In The Bucket Playlist – Interview with Conner Cherland: ‘I just had this belief that someone was listening and I was building something more beautiful for the future’](https://inthebucketplaylist.com/interview-with-conner-cherland-i-just-had-this-belief-that-someone-was-listening-and-i-was-building-something-more-beautiful-for-the-future/)
 - [KSBY 6 News – "Central Coast singer hosts virtual concert for local care center patients"](https://www.ksby.com/news/local-news/central-coast-singer-hosts-virtual-concert-for-local-care-center-patients)
 - [Breakfast Culture Club – "Conner Cherland"](http://www.breakfastcultureclub.com/culture/2018/11/17/conner-cherland)
-- [Wonderland's Angels – "This Is How I'll Love You Review"] (https://wonderlandsangels.wordpress.com/2021/02/12/this-is-how-ill-love-you-conner-cherland-review/)
+- [Wonderland's Angels – "This Is How I'll Love You Review"](https://wonderlandsangels.wordpress.com/2021/02/12/this-is-how-ill-love-you-conner-cherland-review/)
 - [Musical Notes Global – "Track By Track: Conner Cherland Breaks Down New EP Toad Boy! And Other Related Parables"](http://www.musicalnotesglobal.com/blog/2019/11/track-by-track-conner-cherland-breaks-down-new-ep-toad-boy-and-other-related-parables)
 - [CCM Magazine – "Conner Cherland, This Is How I'll Love You Single"](https://www.ccmmagazine.com/release/conner-cherland-this-is-how-ill-love-you-single/)
 - [Martha Stewart Weddings – "This Joyful California Wedding Featured So Many of the Couple's Favorite Things"](https://www.marthastewartweddings.com/7555738/personalized-california-wedding-bruno-rezza)

@@ -22,8 +22,7 @@ view =
                 ]
             ]
             [ -- This will give us the standard tailwind style-reset as well as the fonts
-              Css.Global.global Tw.globalStyles
-            , div
+              div
                 [ css
                     [ Tw.flex
                     , Tw.w_full
@@ -68,7 +67,12 @@ navItems =
                 , Tw.max_w_screen_lg
                 , Tw.text_lg
                 , Tw.items_center
-                , Tw.flex_wrap
+
+                --, Tw.flex_wrap
+                , Tw.flex_col
+                , Bp.md
+                    [ Tw.flex_row |> Css.important
+                    ]
                 ]
             ]
             (([ text "About"
