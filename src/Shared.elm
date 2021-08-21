@@ -5,6 +5,7 @@ import Css.Global
 import DataSource
 import Html exposing (Html)
 import Html.Styled
+import Navbar
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
@@ -102,7 +103,14 @@ view sharedData page model toMsg pageView =
         Html.Styled.toUnstyled
             (Html.Styled.div []
                 (Css.Global.global Tw.globalStyles
-                    :: pageView.body
+                    :: (if page.route == Just Route.Index then
+                            pageView.body
+
+                        else
+                            [ Html.Styled.div [] pageView.body
+                                |> Navbar.view
+                            ]
+                       )
                 )
             )
     , title = pageView.title
