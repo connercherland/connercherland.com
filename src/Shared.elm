@@ -3,6 +3,7 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
 import Browser.Navigation
 import Css.Global
 import DataSource
+import Footer
 import Html exposing (Html)
 import Html.Styled
 import Navbar
@@ -102,7 +103,7 @@ view sharedData page model toMsg pageView =
     { body =
         Html.Styled.toUnstyled
             (Html.Styled.div []
-                (Css.Global.global Tw.globalStyles
+                ((Css.Global.global Tw.globalStyles
                     :: (if page.route == Just Route.Index then
                             pageView.body
 
@@ -111,6 +112,8 @@ view sharedData page model toMsg pageView =
                                 |> Navbar.view
                             ]
                        )
+                 )
+                    ++ [ Footer.view ]
                 )
             )
     , title = pageView.title
