@@ -64,12 +64,26 @@ view =
                             , Tw.justify_center
                             ]
                         ]
-                        [ Icon.spotify
-                        , Icon.youtube
-                        , Icon.instagram
-                        , Icon.facebook
+                        [ icon "https://open.spotify.com/artist/33TOnR5uudaXvJjQhgNGk8" Icon.spotify
+                        , icon "https://www.youtube.com/user/itsconnercherland" Icon.youtube
+                        , icon "https://instagram.com/connercherland/" Icon.instagram
+                        , icon "http://facebook.com/connercherland/" Icon.facebook
                         ]
                     ]
                 ]
             ]
+        ]
+
+
+icon : String -> Html.Html msg -> Html.Html msg
+icon url svgIcon =
+    Html.a
+        [ Attr.href url
+        , css
+            [ Tw.flex
+            , Tw.flex_col
+            , Tw.flex_grow
+            ]
+        ]
+        [ svgIcon
         ]
